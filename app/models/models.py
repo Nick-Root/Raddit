@@ -15,6 +15,10 @@ class User(db.Model, UserMixin):
     lastname = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    posts = db.relationship('Post', back_populates='owner')
+    communities = db.relationship('Community', back_populates='owner')
+    comments = db.relationship('Comment', back_populates='owner')
+    upvotes = db.relationship('Upvote', back_populates='user')
 
     @property
     def password(self):
@@ -30,6 +34,8 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
             'username': self.username,
             'email': self.email
         }
@@ -49,7 +55,21 @@ class Post(db.Model):
     updatedAt = db.Column(db.TIMESTAMP, default=datetime.now(), onupdate=datetime.now())
 
     owner = db.relationship('User', back_populates='posts')
-    community = db.relationship('Community', back_populates='posts')
+    communityId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('communities.id')), nullable=False)
+    community = db.relationship('Community', back_populates='posts', foreign_keys=[communityId])
+    comments = db.relationship('Comment', back_populates='post')
+    upvotes = db.relationship('Upvote', back_populates='post')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'ownerId': self.ownerId,
+            'title': self.title,
+            'body': self.body,
+            'communityId': self.communityId,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt
+        }
 
 class Community(db.Model):
     __tablename__ = 'communities'
@@ -61,10 +81,18 @@ class Community(db.Model):
     ownerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     community = db.Column(db.String(50), nullable=False, unique=True)
     description = db.Column(db.String(255), nullable=False)
-    postId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), nullable=False)
 
+    ownerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     owner = db.relationship('User', back_populates='communities')
-    post = db.relationship('Post', back_populates='communities')
+    posts = db.relationship('Post', back_populates='community', foreign_keys=[Post.communityId])
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'community': self.community,
+            'description': self.description,
+            'ownerId': self.ownerId
+        }
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -82,6 +110,16 @@ class Comment(db.Model):
     owner = db.relationship('User', back_populates='comments')
     post = db.relationship('Post', back_populates='comments')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'ownerId': self.ownerId,
+            'postId': self.postId,
+            'comment': self.comment,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt
+        }
+
 class Upvote(db.Model):
     __tablename__ = 'upvotes'
 
@@ -94,3 +132,10 @@ class Upvote(db.Model):
 
     user = db.relationship('User', back_populates='upvotes')
     post = db.relationship('Post', back_populates='upvotes')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'userId': self.userId,
+            'postId': self.postId
+        }
