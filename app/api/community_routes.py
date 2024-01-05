@@ -11,3 +11,46 @@ def get_comms():
     community_names  = [community.community for community in communities]
 
     return community_names
+
+@community_routes.route('/<int:id>')
+def get_community(id):
+    community = Community.query.get(id)
+
+    community_data = []
+    data = community.to_dict()
+    posts = Post.query.filter_by(communityId = community.id).all()
+    data['posts']=[post.to_dict() for post in posts]
+    community_data.append(data)
+
+    return community_data
+
+@community_routes.route('/new', methods=['POST'])
+@login_required
+def new_community():
+    form = CommunityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        community = Community(community=form.data['community'], ownerId = current_user.id)
+        db.session.add(community)
+        db.session.commit()
+    return
+
+
+@community_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_community(id):
+    community = Community.query.get(id)
+
+    if current_user.id != community.ownerId:
+        return jsonify({"error": "You are not authorized to update this community"}), 403
+
+    form = CommunityForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        community.community = form.data['community']
+        db.session.commit()
+        return jsonify({"message": "Community updated successfully"})
+    else:
+        errors = form.errors
+        return jsonify({"error": errors}), 400
