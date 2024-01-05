@@ -54,3 +54,22 @@ def update_community(id):
     else:
         errors = form.errors
         return jsonify({"error": errors}), 400
+
+@community_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_community(id):
+    community = Community.query.get(id)
+
+    if current_user.id != community.ownerId:
+        return jsonify({"error": "You are not authorized to delete this community"}), 403
+
+    posts = Post.query.filter_by(communityId=community.id).all()
+    for post in posts:
+        Comment.query.filter_by(postId=post.id).delete()
+
+    Post.query.filter_by(communityId=community.id).delete()
+
+    db.session.delete(community)
+    db.session.commit()
+
+    return jsonify({"message": "Community deleted successfully"})
