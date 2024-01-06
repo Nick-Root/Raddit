@@ -51,6 +51,7 @@ class Post(db.Model):
     body = db.Column(db.String(255), nullable=False)
     ownerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     communityId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('communities.id')), nullable=False)
+    imageUrl = db.Column(db.String, nullable=True)
     createdAt = db.Column(db.TIMESTAMP, default=datetime.now())
     updatedAt = db.Column(db.TIMESTAMP, default=datetime.now(), onupdate=datetime.now())
 

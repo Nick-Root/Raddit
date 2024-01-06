@@ -4,6 +4,7 @@ from ..models import db
 from ..models.models import Community, Post, Comment, Upvote, User
 from ..forms.post_form import PostForm
 from ..forms.comment_form import CommentForm
+from .awsupload import upload_file_to_s3, remove_file_from_s3
 
 from flask_login import login_required, current_user
 from datetime import datetime
@@ -78,7 +79,13 @@ def post_post():
             createdAt = datetime.now(),
             updatedAt = datetime.now()
         )
-        print("new_question", new_post)
+        if form.imageUrl.data:
+            result = upload_file_to_s3(form.imageUrl.data)
+            if "url" in result:
+                new_post.imageUrl = result["url"]
+            else:
+                return jsonify(errors=result["errors"])
+        print("new_post", new_post)
         db.session.add(new_post)
         db.session.commit()
         return new_post.to_dict()
@@ -92,17 +99,27 @@ def update_post(id):
     post = Post.query.get(id)
 
     if not post:
-        return "Question does not exist"
+        return "Post does not exist"
 
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        if post.imageUrl and form.imageUrl.data:
+            remove_file_from_s3(post.imageUrl)
+
         post.title = form.data["title"]
         post.body = form.data["body"]
         post.ownerId = current_user.id
         post.communityId = form.data["communityId"]
         post.updatedAt = datetime.now()
+
+        if form.imageUrl.data:
+            result = upload_file_to_s3(form.imageUrl.data)
+            if "url" in result:
+                post.imageUrl = result["url"]
+            else:
+                return jsonify(errors=result["errors"])
 
         db.session.commit()
         return post.to_dict()
@@ -112,17 +129,20 @@ def update_post(id):
 
 
 @post_routes.route('<int:id>', methods=['DELETE'])
-def remove_question(id):
+def remove_post(id):
     post = Post.query.get(id)
     Comment.query.filter_by(postId=id).delete()
     if post:
+        if post.imageUrl:
+            remove_file_from_s3(post.imageUrl)
+
         db.session.delete(post)
         db.session.commit()
-        return jsonify({'message': 'Question removed successfully'})
+        return jsonify({'message': 'Post removed successfully'})
     else:
-        print("Question does not exist")
+        print("Post does not exist")
 
-    return jsonify({'message': 'Question not found'})
+    return jsonify({'message': 'Post not found'})
 
 
 
