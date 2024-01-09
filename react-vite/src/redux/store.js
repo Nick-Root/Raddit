@@ -7,10 +7,14 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import communityReducer from "./community";
+import postReducer from "./post";
+import commentsReducer from "./comment";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  community: communityReducer
+  community: communityReducer,
+  post: postReducer,
+  comment: commentsReducer
 });
 
 let enhancer;

@@ -13,13 +13,14 @@ post_routes = Blueprint('posts', __name__)
 
 @post_routes.route('/')
 def get_posts():
+    print("route accessed")
     posts_list = Post.query.order_by(Post.id.desc()).all()
 
     posts = []
 
     for post in posts_list:
         poster = User.query.get(post.ownerId).username
-        community = Community.query.get(post.communityId)
+        community = Community.query.get(post.communityId).to_dict()
         post_data = post.to_dict()
         post_data["poster"] = poster
         post_data["community"] = community
@@ -62,7 +63,7 @@ def get_curr_posts():
     return jsonify(user=user_data, posts=post_data)
 
 
-@post_routes.route("/", methods=["POST"])
+@post_routes.route("/new", methods=["POST"])
 @login_required
 def post_post():
 
@@ -74,11 +75,11 @@ def post_post():
         new_post = Post (
             title = form.data["title"],
             body = form.data["body"],
-            ownerId = current_user.id,
             communityId = form.data["communityId"],
-            createdAt = datetime.now(),
-            updatedAt = datetime.now()
         )
+        new_post.ownerId = current_user.id,
+        new_post.createdAt = datetime.now(),
+        new_post.updatedAt = datetime.now()
         if form.imageUrl.data:
             result = upload_file_to_s3(form.imageUrl.data)
             if "url" in result:

@@ -1,3 +1,29 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.nav {
+  display: inline-flex;
+  border-bottom: 1px solid black;
+  width: 100%;
+  gap: 75%;
+  margin-top: 0px;
+  padding-bottom: 8px;
+}
+
+.pbutton {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+#proficon {
+  padding-right: 5px;
+}
+
+.homelink {
+  font-size: 40px;
+}

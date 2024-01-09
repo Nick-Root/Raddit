@@ -30,13 +30,19 @@ const deletePost = (postId) => ({
 });
 
 export const thunkGetAllPosts = () => async (dispatch) => {
-    const res = await fetch("/api/posts");
-    if (res.ok) {
-        const allPosts = await res.json();
-        dispatch(loadAllPosts(allPosts));
-        return allPosts;
-    } else {
-        console.error('/api/posts error output');
+    try {
+        const res = await fetch("/api/posts");
+        // console.log(res)
+        if (res.ok) {
+            const allPosts = await res.json();
+            console.log("allPosts", allPosts)
+            dispatch(loadAllPosts(allPosts));
+            return allPosts;
+        } else {
+            console.error('/api/posts error output', await res.text());
+        }
+    } catch (error) {
+        console.error('Error in thunkGetAllPosts:', error);
     }
 };
 
@@ -66,10 +72,10 @@ export const thunkGetSinglePost = (postId) => async (dispatch) => {
 };
 
 export const createPostThunk = (post) => async (dispatch) => {
-    const res = await fetch("/api/posts", {
+    const res = await fetch("/api/posts/new", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post),
+        // headers: { "Content-Type": "application/json" },
+        body: post,
     });
 
     if (res.ok) {

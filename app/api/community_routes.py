@@ -8,9 +8,10 @@ community_routes = Blueprint('communities', __name__)
 @community_routes.route('/')
 def get_comms():
     communities = Community.query.all()
-    community_names  = [community.community for community in communities]
 
-    return community_names
+    community_info = [{'id': community.id, 'name': community.community} for community in communities]
+
+    return community_info
 
 @community_routes.route('/<int:id>')
 def get_community(id):
@@ -30,7 +31,7 @@ def new_community():
     form = CommunityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        community = Community(community=form.data['community'], ownerId = current_user.id)
+        community = Community(community=form.data['community'], description=form.data["description"], ownerId = current_user.id)
         db.session.add(community)
         db.session.commit()
     return
