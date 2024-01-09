@@ -20,10 +20,10 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_users()
-        undo_communities()
-        undo_posts()
-        undo_upvotes()
-        undo_comments()
+        # undo_communities()
+        # undo_posts()
+        # undo_upvotes()
+        # undo_comments()
     seed_users()
     seed_communities()
     seed_posts()
