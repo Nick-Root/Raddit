@@ -6,7 +6,7 @@ function Navigation() {
   return (
     <ul className='nav'>
       <ul>
-        <NavLink to="/" className='homelink'>Raddit</NavLink>
+        <NavLink to="/home" className='homelink'>Raddit</NavLink>
       </ul>
 
       <ul>

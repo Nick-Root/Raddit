@@ -4,9 +4,11 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useNavigate } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
@@ -31,10 +33,19 @@ function ProfileButton() {
 
   const closeMenu = () => setShowMenu(false);
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(thunkLogout());
-    closeMenu();
+
+    try {
+      // Assuming thunkLogout returns a promise
+      await dispatch(thunkLogout());
+      closeMenu()
+      // If successful, navigate to "/"
+      navigate("/");
+    } catch (error) {
+      // Handle any errors that occurred during logout
+      console.error("Logout failed:", error);
+    }
   };
 
   if (!user) return null
