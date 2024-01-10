@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
     games1post = Post(
-        title='What do you guys think was the best game of 2023?', body='Personally, I think that csgo/cs2 was the best game of 2023. My opinion is a little bias because I have been playing the counterstrike series for years on end. It is always the most played game on steam though, so I have to wonder, what other games were really popular this year?', ownerId=1, communityId=1
+        title='What do you guys think was the best game of 2023?', body='I think that csgo/cs2 was the best game of 2023. My opinion is a little bias because I have been playing the counterstrike series for years on end. It is always the most played game on steam though, what other games were really popular this year?', ownerId=1, communityId=1
     )
     games2post = Post(
         title='Are the bosses in Elden Ring always this hard??', body='Im currently stuck on Rykard, Lord of Blasphemy in Elden Ring. Any tips on beating him? So far this game has been extrodinarily difficult. Starting to consider whether or not I can actually do this hahaha', ownerId=2, communityId=1
