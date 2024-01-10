@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { deletePostThunk, thunkGetAllPosts } from "../../redux/post"
 
 
-const DeletePostModal = ({ post }) => {
+const DeletePostModal = () => {
     const { closeModal } = useModal()
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -14,7 +14,7 @@ const DeletePostModal = ({ post }) => {
         e.preventDefault()
 
         await dispatch(deletePostThunk(id))
-        await dispatch(thunkGetAllPosts())
+        // await dispatch(thunkGetAllPosts())
         navigate('/home')
         closeModal()
     }
@@ -24,7 +24,7 @@ const DeletePostModal = ({ post }) => {
             <h2 className='delPost'>Delete This Post?</h2>
             <div className='postDelConfirm'>
                 Are you sure you want to delete this post?
-                You cannot undo this action
+                You cannot undo this action.
             </div>
             <button onClick={deletePost}>Delete</button>
             <button onClick={closeModal}>Cancel</button>

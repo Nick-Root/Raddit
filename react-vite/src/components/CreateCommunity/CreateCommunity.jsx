@@ -66,7 +66,7 @@ function CreateCommunityModal() {
                     />
                 </label>
                 {<p className="error">{errors}</p>}
-                <button type='submit' disabled={community.length === 0 && description.length === 0} className='topbutton'>Create Topic</button>
+                <button type='submit' disabled={community.length === 0 && description.length === 0} className='commbutton'>Create Community</button>
             </form>
         </div>
     )

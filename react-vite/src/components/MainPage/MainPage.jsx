@@ -66,14 +66,16 @@ const MainPage = () => {
                     </div>
                     {statePosts.map((statePost) => {
                         return (
-                            <div className='singlePost' key={statePost.id}>
-                                <NavLink to={`/communities/${statePost?.communityId}`}>{statePost.community && statePost.community?.community} </NavLink>
-                                <NavLink to={`/posts/${statePost.id}`} key={statePost.id}>
-                                    <p>{statePost.title}</p>
-                                    <p>{statePost.body}</p>
-                                    {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg"></img>}
-                                </NavLink>
-                            </div>
+                            <>
+                                {statePost && statePost.body && <div className='singlePost' key={statePost.id}>
+                                    <NavLink to={`/communities/${statePost?.communityId}`}>{statePost.community && statePost.community?.community} </NavLink>
+                                    <NavLink to={`/posts/${statePost.id}`}>
+                                        <p>{statePost.title}</p>
+                                        <p>{statePost.body}</p>
+                                        {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg"></img>}
+                                    </NavLink>
+                                </div>}
+                            </>
                         )
                     })}
                 </div>
