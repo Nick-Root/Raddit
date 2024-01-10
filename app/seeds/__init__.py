@@ -25,7 +25,7 @@ def seed():
         # undo_users()
         # undo_communities()
         # undo_posts()
-
+        db.session.commit()
         # undo_upvotes()
         # undo_comments()
     seed_users()
