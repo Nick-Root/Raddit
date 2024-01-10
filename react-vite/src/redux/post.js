@@ -49,8 +49,7 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 export const updatePostThunk = (postId, updatedPost) => async (dispatch) => {
     const res = await fetch(`/api/posts/${postId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ post: updatedPost }),
+        body: updatedPost,
     });
 
     if (res.ok) {

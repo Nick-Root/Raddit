@@ -21,7 +21,7 @@ const DeletePostModal = () => {
 
     return (
         <div className='deletePostModal'>
-            <h2 className='delPost'>Delete This Post?</h2>
+            <h1 className='delPost'>Delete This Post?</h1>
             <div className='postDelConfirm'>
                 Are you sure you want to delete this post?
                 You cannot undo this action.

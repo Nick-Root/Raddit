@@ -25,6 +25,7 @@ def get_posts():
         post_data["poster"] = poster
         post_data["community"] = community
 
+
         posts.append(post_data)
 
     return jsonify(posts)
@@ -126,7 +127,7 @@ def update_post(id):
         db.session.commit()
         return post.to_dict()
     else:
-        print("Bad Data")
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAA", request.form)
         return "Bad Data"
 
 

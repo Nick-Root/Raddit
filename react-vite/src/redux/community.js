@@ -40,11 +40,11 @@ export const thunkGetAllCommunities = () => async (dispatch) => {
     }
 };
 
-export const updateCommunityThunk = (communityId, updatedCommunity) => async (dispatch) => {
+export const updateCommunityThunk = (communityId, updatedCommunity, description) => async (dispatch) => {
     const res = await fetch(`/api/communities/${communityId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ community: updatedCommunity }),
+        body: JSON.stringify({ community: updatedCommunity, description: description }),
     });
 
     if (res.ok) {
@@ -105,7 +105,7 @@ const communityReducer = (state = initialState, action) => {
         case LOAD_ALL_COMMUNITIES:
             return { ...state, ...action.communities };
         case LOAD_SINGLE_COMMUNITY:
-            return { ...state, ...action.community };
+            return { ...action.community };
         case CREATE_COMMUNITY:
             return { ...state, communities: [...(state.communities || []), action.community] };
         case UPDATE_COMMUNITY:

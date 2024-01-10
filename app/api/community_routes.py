@@ -50,6 +50,7 @@ def update_community(id):
 
     if form.validate_on_submit():
         community.community = form.data['community']
+        community.description = form.data['description']
         db.session.commit()
         return jsonify({"message": "Community updated successfully"})
     else:

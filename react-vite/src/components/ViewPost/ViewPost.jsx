@@ -27,7 +27,6 @@ const ViewPost = () => {
     if (user.id === postInfo.ownerId) {
         usercheck = true
     }
-    let currentComm = community[0]
     console.log("community", community)
     return (
         <div className='postContainer'>
@@ -44,13 +43,16 @@ const ViewPost = () => {
                                 itemText={'Delete'}
                                 modalComponent={<DeletePostModal />}
                             />
+                            <NavLink to={`/posts/${postInfo.id}/update`}>
+                                <button>Update</button>
+                            </NavLink>
                         </>
                     )}
                 </div>
             </div>
             <div className="communityInfo">
                 <h2>c/{postInfo.community}</h2>
-                <p>{currentComm.description}</p>
+                <p>{community[0] && community[0].description}</p>
                 <NavLink to={`/communities/${postInfo.communityId}`}>Visit Community</NavLink>
             </div>
         </div>

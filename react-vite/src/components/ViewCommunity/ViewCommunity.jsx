@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { thunkGetSingleCommunity } from "../../redux/community"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import DeleteCommunityModal from "../DeleteCommunity/DeleteCommunity"
+import UpdateCommunityModal from "../UpdateCommunity/UpdateCommunity"
 
 
 const ViewCommunity = () => {
@@ -39,6 +40,16 @@ const ViewCommunity = () => {
                         <OpenModalMenuItem
                             itemText={'Delete'}
                             modalComponent={<DeleteCommunityModal />}
+                        />
+                    </>
+                )}
+            </div>
+            <div className="updateCommunity">
+                {user && ownercheck && (
+                    <>
+                        <OpenModalMenuItem
+                            itemText={'Update'}
+                            modalComponent={<UpdateCommunityModal />}
                         />
                     </>
                 )}
