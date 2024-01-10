@@ -67,6 +67,7 @@ class Post(db.Model):
             'ownerId': self.ownerId,
             'title': self.title,
             'body': self.body,
+            'imageUrl': self.imageUrl,
             'communityId': self.communityId,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt

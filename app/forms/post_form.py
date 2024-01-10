@@ -7,5 +7,5 @@ from ..api.awsupload import ALLOWED_EXTENSIONS
 class PostForm(FlaskForm):
     title = StringField("title", validators=[DataRequired()])
     body = StringField("body", validators=[DataRequired()])
-    imageUrl = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    imageUrl = FileField("Image File", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     communityId = IntegerField("communityId", validators=[DataRequired()])

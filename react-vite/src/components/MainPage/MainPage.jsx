@@ -11,8 +11,8 @@ const MainPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     let user = useSelector((state) => state.session.user)
-    let posts = useSelector((state) => state.post)
-    let communities = useSelector((state) => state.community)
+    let statePosts = useSelector((state) => Object.values(state.post))
+    let communities = useSelector((state) => Object.values(state.community))
 
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef()
@@ -36,12 +36,12 @@ const MainPage = () => {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-    if (!posts, !communities) return null
+    if (!user || !statePosts || !communities) return null
 
     const closeMenu = () => setShowMenu(false);
 
-    let postArr = Object.values(posts)
-    let communityArr = Object.values(communities)
+
+    // let communityArr = Object.values(communities)
 
     const navToCreatePost = () => {
         navigate(`/posts/new`)
@@ -64,14 +64,14 @@ const MainPage = () => {
                             type='text'
                         />
                     </div>
-                    {postArr.map((post) => {
+                    {statePosts.map((statePost) => {
                         return (
-                            <div className='singlePost'>
-                                <NavLink to={`/communities/${post.communityId}`}> c/{post.community.community} </NavLink>
-                                <NavLink to={`/posts/${post.id}`} key={post.id}>
-                                    <p>{post.title}</p>
-                                    <p>{post.imageUrl}</p>
-                                    <p>{post.body}</p>
+                            <div className='singlePost' key={statePost.id}>
+                                <NavLink to={`/communities/${statePost?.communityId}`}>{statePost.community && statePost.community?.community} </NavLink>
+                                <NavLink to={`/posts/${statePost.id}`} key={statePost.id}>
+                                    <p>{statePost.title}</p>
+                                    <p>{statePost.body}</p>
+                                    {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg"></img>}
                                 </NavLink>
                             </div>
                         )

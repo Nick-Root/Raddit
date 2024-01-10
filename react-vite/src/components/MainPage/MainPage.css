@@ -20,3 +20,8 @@
     border: 1px solid black;
     height: fit-content
 }
+
+.awsImg {
+    width: 800px;
+    height: 400px;
+}

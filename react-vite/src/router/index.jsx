@@ -4,6 +4,8 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import MainPage from '../components/MainPage/MainPage';
 import CreatePost from '../components/CreatePost/CreatePost';
+import ViewPost from '../components/ViewPost/ViewPost';
+import ViewCommunity from '../components/ViewCommunity/ViewCommunity';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ export const router = createBrowserRouter([
       {
         path: "/posts/new",
         element: <CreatePost />
+      },
+      {
+        path: "/posts/:id",
+        element: <ViewPost />
+      },
+      {
+        path: "communities/:communityId",
+        element: <ViewCommunity />
       }
     ],
   },

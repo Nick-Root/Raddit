@@ -33,21 +33,23 @@ def get_posts():
 def get_post(id):
     post = Post.query.get(id)
     poster = User.query.get(post.ownerId).username
-    comments = Comment.query.filter_by(postId=id).all()
+    community = Community.query.get(post.communityId)
+    # comments = Comment.query.filter_by(postId=id).all()
 
-    comment_data = [{
-        "comment": comment.comment,
-        "createdAt": comment.createdAt,
-        "commentId": comment.id,
-        "username": User.query.get(comment.ownerId).username,
-        "ownerId": comment.userId
-    } for comment in comments]
+    # comment_data = [{
+    #     "comment": comment.comment,
+    #     "createdAt": comment.createdAt,
+    #     "commentId": comment.id,
+    #     "username": User.query.get(comment.ownerId).username,
+    #     "ownerId": comment.userId
+    # } for comment in comments]
 
     post_data = post.to_dict()
 
     post_data["poster"] = poster
+    post_data["community"] = community.community
 
-    return jsonify(post_data, comment_data)
+    return jsonify(post_data)
 
 @post_routes.route('/current')
 def get_curr_posts():
@@ -76,22 +78,21 @@ def post_post():
             title = form.data["title"],
             body = form.data["body"],
             communityId = form.data["communityId"],
+            ownerId = current_user.id,
+            createdAt = datetime.now(),
+            updatedAt = datetime.now()
         )
-        new_post.ownerId = current_user.id,
-        new_post.createdAt = datetime.now(),
-        new_post.updatedAt = datetime.now()
         if form.imageUrl.data:
             result = upload_file_to_s3(form.imageUrl.data)
             if "url" in result:
                 new_post.imageUrl = result["url"]
-            else:
-                return jsonify(errors=result["errors"])
+
         print("new_post", new_post)
         db.session.add(new_post)
         db.session.commit()
         return new_post.to_dict()
     else:
-        print("Bad Data")
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAA", request.form)
         return "Bad Data"
 
 @post_routes.route("<int:id>", methods=["PUT"])

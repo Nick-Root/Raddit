@@ -71,11 +71,11 @@ export const thunkGetSinglePost = (postId) => async (dispatch) => {
     }
 };
 
-export const createPostThunk = (post) => async (dispatch) => {
+export const createPostThunk = (formData) => async (dispatch) => {
     const res = await fetch("/api/posts/new", {
         method: "POST",
         // headers: { "Content-Type": "application/json" },
-        body: post,
+        body: formData,
     });
 
     if (res.ok) {
@@ -83,8 +83,8 @@ export const createPostThunk = (post) => async (dispatch) => {
         dispatch(createPost(newPost));
         return newPost;
     } else {
-        const errorData = await res.json().catch(() => null);
-        console.error('Error creating post:', res.status, errorData);
+        console.log(res.status, res)
+        throw new Error("Error creating post")
     }
 };
 
@@ -94,7 +94,7 @@ export const deletePostThunk = (postId) => async (dispatch) => {
     });
 
     if (res.ok) {
-        dispatch(deletePost(postId));
+        dispatch(deletePost({ postId }));
     } else {
         const errorData = await res.json().catch(() => null);
         console.error('Error deleting post:', res.status, errorData);
