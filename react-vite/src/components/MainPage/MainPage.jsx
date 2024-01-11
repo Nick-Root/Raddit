@@ -57,31 +57,39 @@ const MainPage = () => {
     return (
         <>
             <div className="mainpage">
-                <div className='posts'>
+                <div className="postCont">
+
                     <div className='createPostText'>
-                        <i className="fas fa-user-circle" />
-                        <input
-                            type='text'
-                        />
+                        <i className="fas fa-user-circle" id="createPostIcon" />
+                        <div className="emptyBox" onClick={navToCreatePost}>
+                            <p className='cpostText'>Create Post...</p>
+                        </div>
                     </div>
-                    {statePosts.map((statePost) => {
-                        return (
-                            <>
-                                {statePost && statePost.body && <div className='singlePost' key={statePost.id}>
-                                    <NavLink to={`/communities/${statePost?.communityId}`}>{statePost.community && statePost.community?.community} </NavLink>
-                                    <NavLink to={`/posts/${statePost.id}`}>
-                                        <p>{statePost.title}</p>
-                                        <p>{statePost.body}</p>
-                                        {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg"></img>}
-                                    </NavLink>
-                                </div>}
-                            </>
-                        )
-                    })}
+                    <div className='posts'>
+                        {statePosts.map((statePost) => {
+                            return (
+                                <>
+                                    {statePost && statePost.body && <div className='singlePost' key={statePost.id}>
+                                        <div className='commPoster'>
+                                            <NavLink to={`/communities/${statePost?.communityId}`} className='postComm'><p>c/{statePost.community && statePost.community?.community} </p> </NavLink>
+                                            <p className="postedBy">Posted by {statePost && statePost.poster}</p>
+                                        </div>
+                                        <NavLink to={`/posts/${statePost.id}`}>
+                                            <h1 className='postTitle'>{statePost.title}</h1>
+                                            <h3 className='postBody'>{statePost.body}</h3>
+                                            {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg"></img>}
+                                        </NavLink>
+                                    </div>}
+                                </>
+                            )
+                        })}
+                    </div>
                 </div>
                 <div className='sideMain'>
                     <h2>Home</h2>
-                    <button onClick={navToCreatePost}>
+                    <p className='side1'>Welcome to the home page!</p>
+                    <p className="side2">View posts and visit communities that interest you and have some good conversations!</p>
+                    <button onClick={navToCreatePost} className='sideCreate'>
                         Create Post
                     </button>
 

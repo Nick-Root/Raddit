@@ -8,7 +8,11 @@
   width: 100%;
   gap: 75%;
   margin-top: 0px;
-  padding-bottom: 8px;
+  background-color: #1A1A1B;
+  padding-left: 0px;
+  align-items: center;
+  height: fit-content;
+  padding: 10px 0px 10px 0px;
 }
 
 .pbutton {
@@ -18,6 +22,7 @@
   align-items: center;
   padding-left: 20px;
   font-size: 20px;
+
 }
 
 #proficon {
@@ -26,4 +31,5 @@
 
 .homelink {
   font-size: 40px;
+  color: orange
 }

@@ -1,0 +1,31 @@
+.postButtons {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: space-around;
+}
+
+.postpage {
+    display: flex;
+    justify-content: center;
+}
+
+.communityInfo {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    margin-left: 20px;
+    width: 300px;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A1A1B;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding-bottom: 10px;
+}
+
+.visitComm:hover {
+    color: white;
+    text-decoration: underline;
+}

@@ -1,0 +1,27 @@
+.createpage {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+
+
+}
+
+.formCont {
+    background-color: white;
+    width: 800px;
+    height: 500px;
+}
+
+.errors {
+    color: red
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#community {
+    width: fit-content;
+}

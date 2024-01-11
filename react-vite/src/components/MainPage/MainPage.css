@@ -1,9 +1,44 @@
 .singlePost {
     border: 1px solid black;
     width: 800px;
+    margin-bottom: 10px;
+    background-color: #1A1A1B;
+    border-radius: 6px;
+    border: 1px solid gray
+}
+
+.postTitle {
+    margin-left: 10px;
+    margin-top: 0px
+}
+
+.commPoster {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 780px;
+    padding: 0px 10px 0px 10px
+}
+
+.postComm {
+    padding-left: 10px;
+}
+
+.postComm:hover {
+    text-decoration: underline;
+    color: white
+}
+
+.postBody {
+    margin: 10px 10px 10px 10px
 }
 
 .posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.postCont {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,5 +58,89 @@
 
 .awsImg {
     width: 800px;
-    height: 400px;
+    height: 600px;
+    border-radius: 6px;
+}
+
+.posts {
+    margin-top: 10px
+}
+
+.createPostText {
+    display: inline-flex;
+    background-color: #1A1A1B;
+    width: 800px;
+    height: 70px;
+    border-radius: 6px;
+    align-items: center;
+    border: 1px solid gray;
+}
+
+#createPostIcon {
+    font-size: 50px;
+    margin-left: 6px
+}
+
+.emptyBox {
+    margin-left: 10px;
+    width: 720px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    background-color: #3A3C3D;
+}
+
+.emptyBox:hover {
+    cursor: text;
+}
+
+.cpostText {
+    font-size: 20px;
+    margin: 0px;
+    padding: 15px;
+}
+
+.sideMain {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    margin-left: 20px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A1A1B;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding-bottom: 10px;
+}
+
+.side2 {
+    padding-left: 15px
+}
+
+.sideCreate {
+    padding: 10px 10px 10px 10px;
+    width: 250px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.sideCreate:hover {
+    cursor: pointer;
+    background-color: #E4E3E1;
+}
+
+button {
+    padding: 10px 10px 10px 10px;
+    width: 250px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #E4E3E1;
 }

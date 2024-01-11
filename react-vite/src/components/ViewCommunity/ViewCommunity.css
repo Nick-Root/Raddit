@@ -1,0 +1,12 @@
+.communitypage {
+    display: flex;
+    justify-content: center;
+}
+
+.postTitle1 {
+    margin-left: 10px;
+}
+
+.postBody1 {
+    margin: 10px 10px 10px 10px
+}

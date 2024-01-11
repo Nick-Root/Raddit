@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, NavLink } from "react-router-dom"
 import { thunkGetSingleCommunity } from "../../redux/community"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import DeleteCommunityModal from "../DeleteCommunity/DeleteCommunity"
 import UpdateCommunityModal from "../UpdateCommunity/UpdateCommunity"
-
+import './ViewCommunity.css'
 
 const ViewCommunity = () => {
     const dispatch = useDispatch()
@@ -31,43 +31,46 @@ const ViewCommunity = () => {
 
 
     return (
-        <div className="communityPage">
-            <h1 className='communityName'>{community[0].community}</h1>
-            <h2 className="communityDesc">{community[0].description}</h2>
-            <div className='deleteCommunity'>
-                {user && ownercheck && (
-                    <>
-                        <OpenModalMenuItem
-                            itemText={'Delete'}
-                            modalComponent={<DeleteCommunityModal />}
-                        />
-                    </>
-                )}
-            </div>
-            <div className="updateCommunity">
-                {user && ownercheck && (
-                    <>
-                        <OpenModalMenuItem
-                            itemText={'Update'}
-                            modalComponent={<UpdateCommunityModal />}
-                        />
-                    </>
-                )}
-            </div>
-            {statePosts.map((statePost) => {
-                return (
-                    <div className='singlePost' key={statePost.id}>
-                        <div>{statePost.community && statePost.community?.community} </div>
-                        <div>
-                            <p>{statePost.title}</p>
-                            <p>{statePost.body}</p>
-                            {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg"></img>}
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
+        <div className="communitypage">
+            <div className="postCont">
 
+                <h1 className='communityName'>{community[0].community}</h1>
+                <h2 className="communityDesc">{community[0].description}</h2>
+                <div className='deleteCommunity'>
+                    {user && ownercheck && (
+                        <>
+                            <OpenModalMenuItem
+                                itemText={'Delete'}
+                                modalComponent={<DeleteCommunityModal />}
+                            />
+                        </>
+                    )}
+                </div>
+                <div className="updateCommunity">
+                    {user && ownercheck && (
+                        <>
+                            <OpenModalMenuItem
+                                itemText={'Update'}
+                                modalComponent={<UpdateCommunityModal />}
+                            />
+                        </>
+                    )}
+                </div>
+                {statePosts.map((statePost) => {
+                    return (
+                        <div className='singlePost' key={statePost.id}>
+                            <div>{statePost.community && statePost.community?.community} </div>
+                            <NavLink to={`/posts/${statePost.id}`}>
+                                <h1 className='postTitle1'>{statePost.title}</h1>
+                                <h3 className='postBody1'>{statePost.body}</h3>
+                                {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg"></img>}
+                            </NavLink>
+                        </div>
+                    )
+                }).reverse()}
+            </div>
+
+        </div>
     )
 
 }
