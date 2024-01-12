@@ -55,6 +55,7 @@ const UpdateCommunityModal = () => {
                         required
                         placeholder="Community Name"
                         className="commupname"
+                        maxLength={50}
                     />
                 </label>
                 <label>
@@ -64,6 +65,7 @@ const UpdateCommunityModal = () => {
                         required
                         placeholder="Community Description"
                         className="commupdesc"
+                        maxLength={255}
                     />
                 </label>
                 <button type='submit' disabled={community.length === 0 || description.length === 0} className='commupbutton'>Update Community</button>

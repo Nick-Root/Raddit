@@ -55,6 +55,7 @@ function CreateCommunityModal() {
                         required
                         placeholder="Community Name"
                         className='communityName'
+                        maxLength={50}
                     />
                 </label>
                 <label>
@@ -63,6 +64,7 @@ function CreateCommunityModal() {
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Community Description"
                         className='communityDescription'
+                        maxLength={255}
                     />
                 </label>
                 {<p className="error">{errors}</p>}

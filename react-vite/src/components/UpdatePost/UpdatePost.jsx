@@ -72,6 +72,7 @@ const UpdatePost = () => {
                         name="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        maxLength={100}
                     />
                 </label>
 
@@ -81,6 +82,7 @@ const UpdatePost = () => {
                         name="body"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
+                        maxLength={255}
                     />
                 </label>
 

@@ -75,6 +75,7 @@ const CreatePost = () => {
                             name="title"
                             value={title}
                             onChange={e => setTitle(e.target.value)}
+                            maxLength={100}
                         />
                     </label>
 
@@ -83,6 +84,7 @@ const CreatePost = () => {
                             name="body"
                             value={body}
                             onChange={e => setBody(e.target.value)}
+                            maxLength={255}
                         />
                     </label>
 

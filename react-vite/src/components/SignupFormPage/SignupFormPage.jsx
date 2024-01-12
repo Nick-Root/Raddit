@@ -66,7 +66,7 @@ function SignupFormPage() {
     } else {
       dispatch(thunkGetAllPosts())
       dispatch(thunkGetAllCommunities())
-      navigate("/");
+      navigate("/home");
     }
   };
 
@@ -74,7 +74,7 @@ function SignupFormPage() {
     e.preventDefault()
     return await dispatch(thunkLogin({ email: 'demo@aa.io', password: 'password' }))
       .then(closeModal)
-      .then(navigate('/questions'))
+      .then(navigate('/home'))
   }
 
   return (
