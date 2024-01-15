@@ -69,31 +69,36 @@ const CreatePost = () => {
                         ))}
                     </select>
                     {errors && <p className='errors'>{errors}</p>}
-                    <label>Title:
+                    <label className='titleBox'>
                         <input
                             type="text"
                             name="title"
+                            placeholder='Post Title'
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                             maxLength={100}
+                            className='titleInput'
                         />
                     </label>
 
-                    <label>Body:
+                    <label className='bodyBox'>
                         <textarea
                             name="body"
                             value={body}
+                            placeholder='Post Body'
                             onChange={e => setBody(e.target.value)}
                             maxLength={255}
+                            className='bodyInput'
                         />
                     </label>
 
-                    <label>Image URL:
+                    <label className='imageBox'>Image Url (optional):
                         <input
                             type="file"
                             accept="image/*"
                             onChange={(e) => setImageUrl(e.target.files[0])}
-                        />
+                            className='fileup'
+                       />
                     </label>
 
                     <button type="submit" disabled={title.length === 0 || body.length === 0}>Submit Post</button>

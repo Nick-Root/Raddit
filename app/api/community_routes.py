@@ -75,3 +75,14 @@ def delete_community(id):
     db.session.commit()
 
     return jsonify({"message": "Community deleted successfully"})
+
+@community_routes.route('/current')
+@login_required
+def get_current_user_communities():
+    userId = current_user.id
+
+    user_communities = Community.query.filter_by(ownerId=userId).all()
+
+    community_data = [community.to_dict() for community in user_communities]
+
+    return jsonify(communities=community_data)

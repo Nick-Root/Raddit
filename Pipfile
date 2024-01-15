@@ -27,8 +27,14 @@ werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 importlib-metadata = "==6.9.0"
 zipp = "==3.17.0"
-email-validator = "*"
-boto3 = "*"
+email-validator = "==2.1.0.post1"
+boto3 = "==1.34.14"
+botocore = "==1.34.14"
+dnspython = "==2.4.2"
+idna = "==3.6"
+jmespath = "==1.0.1"
+s3transfer = "==0.10.0"
+urllib3 = "==1.26.18"
 
 [dev-packages]
 

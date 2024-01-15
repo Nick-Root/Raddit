@@ -3,6 +3,8 @@ const LOAD_SINGLE_COMMUNITY = "communities/loadSingleCommunity"
 const CREATE_COMMUNITY = "communities/createCommunity"
 const UPDATE_COMMUNITY = "communities/updateCommunity"
 const DELETE_COMMUNITY = "communities/deleteCommunity"
+const LOAD_CURRENT_USER_COMMUNITIES = "communities/loadCurrentUserCommunities";
+
 
 const createCommunity = (community) => ({
     type: CREATE_COMMUNITY,
@@ -28,6 +30,12 @@ const deleteCommunity = (communityId) => ({
     type: DELETE_COMMUNITY,
     communityId,
 });
+
+const loadCurrentUserCommunities = (communities) => ({
+    type: LOAD_CURRENT_USER_COMMUNITIES,
+    communities,
+});
+
 
 export const thunkGetAllCommunities = () => async (dispatch) => {
     const res = await fetch("/api/communities");
@@ -97,6 +105,18 @@ export const deleteCommunityThunk = (communityId) => async (dispatch) => {
     }
 };
 
+export const thunkGetCurrentUserCommunities = () => async (dispatch) => {
+    const res = await fetch("/api/communities/current");
+
+    if (res.ok) {
+        const currentUserCommunities = await res.json();
+        dispatch(loadCurrentUserCommunities(currentUserCommunities.communities));
+        return currentUserCommunities;
+    } else {
+        console.error('/api/communities/current error output', await res.text());
+    }
+};
+
 
 const initialState = {};
 
@@ -115,6 +135,9 @@ const communityReducer = (state = initialState, action) => {
                     community.id === action.community.id ? action.community : community
                 ),
             };
+        case LOAD_CURRENT_USER_COMMUNITIES:
+            return { ...action.communities };
+
         case DELETE_COMMUNITY:
             return {
                 ...state,

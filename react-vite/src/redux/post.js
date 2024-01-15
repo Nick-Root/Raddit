@@ -1,5 +1,6 @@
 const LOAD_ALL_POSTS = "posts/loadAllPosts";
 const LOAD_SINGLE_POST = "posts/loadSinglePost";
+const LOAD_CURRENT_USER_POSTS = "posts/loadCurrentUserPosts";
 const CREATE_POST = "posts/createPost";
 const UPDATE_POST = "posts/updatePost";
 const DELETE_POST = "posts/deletePost";
@@ -16,6 +17,11 @@ const updatePost = (post) => ({
 
 const loadAllPosts = (posts) => ({
     type: LOAD_ALL_POSTS,
+    posts,
+});
+
+const loadCurrentUserPosts = (posts) => ({
+    type: LOAD_CURRENT_USER_POSTS,
     posts,
 });
 
@@ -100,6 +106,17 @@ export const deletePostThunk = (postId) => async (dispatch) => {
     }
 };
 
+export const thunkGetCurrentUserPosts = () => async (dispatch) => {
+        const res = await fetch("/api/posts/current");
+        if (res.ok) {
+            const currentUserPosts = await res.json();
+            dispatch(loadCurrentUserPosts(currentUserPosts.posts));
+            return currentUserPosts;
+        } else {
+            console.error('/api/posts/current error output', await res.text());
+        }
+};
+
 const initialState = {};
 
 const postReducer = (state = initialState, action) => {
@@ -117,6 +134,8 @@ const postReducer = (state = initialState, action) => {
                     post.id === action.post.id ? action.post : post
                 ),
             };
+        case LOAD_CURRENT_USER_POSTS:
+            return { ...action.posts }
         case DELETE_POST:
             return {
                 ...state,

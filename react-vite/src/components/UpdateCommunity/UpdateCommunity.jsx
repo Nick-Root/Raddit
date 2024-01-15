@@ -22,7 +22,7 @@ const UpdateCommunityModal = () => {
     useEffect(() => {
         setDescription(communityById[0].description)
         setCommunity(communityById[0].community)
-    }, [communityId])
+    }, [communityId, communityById])
 
     const handleSubmit = async (e) => {
         e.preventDefault()

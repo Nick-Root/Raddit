@@ -61,10 +61,17 @@ def get_curr_posts():
 
     user_data = user.to_dict()
 
-    post_data = [post.to_dict() for post in posts]
+    post_data = []
+
+    for post in posts:
+        poster = User.query.get(post.ownerId).username
+        community = Community.query.get(post.communityId).to_dict()
+        post_dict = post.to_dict()
+        post_dict["poster"] = poster
+        post_dict["community"] = community
+        post_data.append(post_dict)
 
     return jsonify(user=user_data, posts=post_data)
-
 
 @post_routes.route("/new", methods=["POST"])
 @login_required

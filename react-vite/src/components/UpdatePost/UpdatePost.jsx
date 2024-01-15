@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updatePostThunk, thunkGetSinglePost } from '../../redux/post';
 import { thunkGetAllCommunities } from '../../redux/community';
 import { useNavigate, useParams } from 'react-router-dom';
+import './UpdatePost.css'
 
 const UpdatePost = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const UpdatePost = () => {
     const [body, setBody] = useState("");
     const [imageUrl, setImageUrl] = useState(null);
     const [communityId, setCommunityId] = useState("");
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         dispatch(thunkGetAllCommunities());
@@ -35,6 +37,11 @@ const UpdatePost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!communityId || communityId === "") {
+            setErrors(["Please Select a Community"]);
+            return;
+        }
+
         if ((communityId && title && body) || imageUrl) {
             const formData = new FormData();
             if (imageUrl) {
@@ -53,8 +60,10 @@ const UpdatePost = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className='updatepage'>
+
+        <div className='formCont'>
+            <form onSubmit={handleSubmit} className='form' encType="multipart/form-data">
 
                 <select id="community" name="communityId" onChange={(e) => setCommunityId(e.target.value)} value={communityId}>
                     <option value="">Select a Community</option>
@@ -64,41 +73,45 @@ const UpdatePost = () => {
                         </option>
                     ))}
                 </select>
-
-
-                <label>Title:
+                 {errors && <p className='errors'>{errors}</p>}
+                <label className='titleBox'>
                     <input
                         type="text"
                         name="title"
+                        placeholder='Update Title'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         maxLength={100}
+                        className='titleInput'
                     />
                 </label>
 
 
-                <label>Body:
+                <label className='bodyBox'>
                     <textarea
                         name="body"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                         maxLength={255}
-                    />
+                        placeholder='Update Body'
+                        className='bodyInput'
+                        />
                 </label>
 
 
-                <label>Image URL:
+                <label className='imageBox'>Image Url (optional):
                     <input
                         type="file"
                         accept="image/*"
                         onChange={(e) => setImageUrl(e.target.files[0])}
-                    />
+                        />
                 </label>
 
 
-                <button type="submit">Update Post</button>
+                <button type="submit" disabled={title.length === 0 || body.length === 0}>Update Post</button>
             </form>
         </div>
+    </div>
     );
 };
 

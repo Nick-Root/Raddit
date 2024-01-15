@@ -7,6 +7,7 @@ import CreatePost from '../components/CreatePost/CreatePost';
 import ViewPost from '../components/ViewPost/ViewPost';
 import ViewCommunity from '../components/ViewCommunity/ViewCommunity';
 import UpdatePost from '../components/UpdatePost/UpdatePost';
+import MyStuff from '../components/MyStuff/MyStuff';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "communities/:communityId",
         element: <ViewCommunity />
+      },
+      {
+        path: '/mystuff',
+        element: <MyStuff />
       }
     ],
   },

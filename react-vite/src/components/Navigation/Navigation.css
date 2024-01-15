@@ -1,12 +1,38 @@
 .profile-dropdown {
+  display: flex;
+  justify-content: center;
   position: absolute;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding-right: 20px;
+  right: 0;
+  left: auto;
+  background-color: #1A1A1B;
+  width: fit-content;
+  padding: 0px;
+  height: 125px;
+  padding: 15px 15px 15px 15px;
+}
+.dropdownBox {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dropdownul {
+  padding: 0px
+}
+.dropdownulButton {
+  padding: 0px;
 }
 
 .nav {
   display: inline-flex;
   border-bottom: 1px solid black;
   width: 100%;
-  gap: 75%;
+  justify-content: space-between;
   margin-top: 0px;
   background-color: #1A1A1B;
   padding-left: 0px;

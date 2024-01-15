@@ -13,7 +13,7 @@ function ProfileButton() {
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation(); 
     setShowMenu(!showMenu);
   };
 
@@ -48,6 +48,11 @@ function ProfileButton() {
     }
   };
 
+  const navToMyStuff = () => {
+    navigate('/mystuff')
+    closeMenu()
+  }
+
   if (!user) return null
   return (
     <>
@@ -58,13 +63,13 @@ function ProfileButton() {
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
+            <div className='dropdownBox'>
+              <ul className='dropdownulButton'><p>Welcome {user.username}!</p></ul>
+              <button onClick={navToMyStuff}>My Stuff</button>
+              <ul className='dropdownulButton'>
                 <button onClick={logout}>Log Out</button>
-              </li>
-            </>
+              </ul>
+            </div>
           ) : (
             <>
               <OpenModalMenuItem
