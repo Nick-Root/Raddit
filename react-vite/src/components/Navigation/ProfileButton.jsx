@@ -55,7 +55,7 @@ function ProfileButton() {
 
   if (!user) return null
   return (
-    <>
+    <div className='menuButton'>
       <button onClick={toggleMenu} className='pbutton'>
         <i className="fas fa-user-circle" id='proficon' />
         {user.username}
@@ -86,7 +86,7 @@ function ProfileButton() {
           )}
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

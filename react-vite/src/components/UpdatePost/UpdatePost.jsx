@@ -63,6 +63,7 @@ const UpdatePost = () => {
         <div className='updatepage'>
 
         <div className='formCont'>
+        <h1 className='createPost'>Update a Post</h1>
             <form onSubmit={handleSubmit} className='form' encType="multipart/form-data">
 
                 <select id="community" name="communityId" onChange={(e) => setCommunityId(e.target.value)} value={communityId}>
@@ -108,9 +109,16 @@ const UpdatePost = () => {
                 </label>
 
 
-                <button type="submit" disabled={title.length === 0 || body.length === 0}>Update Post</button>
+                <button type="submit" disabled={title && title.length === 0 || body && body.length === 0}>Update Post</button>
             </form>
         </div>
+        <div className='postRules'>
+                <h2 className='rules'>Posting Rules</h2>
+                <ol>1. Be respectful</ol>
+                <ol>2. Keep posts related to community</ol>
+                <ol>3. Look for the original source of your content</ol>
+                <ol>4. Search for duplicates before posting</ol>
+            </div>
     </div>
     );
 };

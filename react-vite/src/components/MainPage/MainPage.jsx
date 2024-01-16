@@ -86,6 +86,8 @@ const MainPage = () => {
                     </div>
                 </div>
                 <div className='sideMain'>
+
+                <div className='sideHome'>
                     <h2>Home</h2>
                     <p className='side1'>Welcome to the home page!</p>
                     <p className="side2">View posts and visit communities that interest you and have some good conversations!</p>
@@ -99,6 +101,13 @@ const MainPage = () => {
                         className='communityModal'
                         modalComponent={<CreateCommunityModal closeModal={closeMenu} />}
                     />
+                </div>
+                <div className="devHome">
+                        <h2>Dev Team</h2>
+                        <div>
+                        <i className="fa-brands fa-github" style={{ color: 'white' }}></i> <NavLink to='https://github.com/Nick-Root' className={'github'} style={{ color: 'white' }}>Nick Root</NavLink>
+                        </div>
+                </div>
                 </div>
             </div>
         </>

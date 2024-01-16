@@ -82,7 +82,7 @@ function SignupFormPage() {
       <div className="white-space">
         <div className="splash-form-signup">
           <h2 className='formhead'>Sign Up</h2>
-          {signupErrors.server && <p className="error">{signupErrors.server}</p>}
+          {signupErrors.server && <p className="errors">{signupErrors.server}</p>}
           <form onSubmit={handleSubmit}>
             <label>
               First Name
@@ -111,7 +111,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {signupErrors.email && <p className="error">{signupErrors.email}</p>}
+            {signupErrors.email && <p className="errors">{signupErrors.email}</p>}
             <label>
               Username
               <input
@@ -121,7 +121,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {signupErrors.username && <p className="error">{signupErrors.username}</p>}
+            {signupErrors.username && <p className="errors">{signupErrors.username}</p>}
             <label>
               Password
               <input
@@ -131,7 +131,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {signupErrors.password && <p className="error">{signupErrors.password}</p>}
+            {signupErrors.password && <p className="errors">{signupErrors.password}</p>}
             <label>
               Confirm Password
               <input
@@ -141,14 +141,14 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {signupErrors.confirmPassword && <p className="error">{signupErrors.confirmPassword}</p>}
+            {signupErrors.confirmPassword && <p className="errors">{signupErrors.confirmPassword}</p>}
             <button type="submit" className="signup">Sign Up</button>
           </form>
         </div>
         <div className="splash-form-login">
           <h2 className='formhead'>Log In</h2>
           {loginErrors.length > 0 &&
-            loginErrors.map((message) => <p key={message} className="error">{message}</p>)}
+            loginErrors.map((message) => <p key={message} className="errors">{message}</p>)}
           <form onSubmit={handleLoginSubmit}>
             <label>
               Email
@@ -159,7 +159,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {loginErrors.email && <p className="error">{loginErrors.email}</p>}
+            {loginErrors.email && <p className="errors">{loginErrors.email}</p>}
             <label>
               Password
               <input
@@ -169,7 +169,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {loginErrors.password && <p className="error">{loginErrors.password}</p>}
+            {loginErrors.password && <p className="errors">{loginErrors.password}</p>}
             <button type="submit" className="login">Log In</button>
           </form>
           <button className="demouser" onClick={demo} style={{ cursor: 'pointer' }}>Demo User</button>

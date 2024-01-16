@@ -57,5 +57,19 @@
 
 .homelink {
   font-size: 40px;
-  color: orange
+  color: #FF8800;
+  padding-left: 20px;
+}
+.homelink-disabled {
+  font-size: 40px;
+  color: orange;
+  padding-left: 20px;
+}
+
+.homelink-disabled:hover {
+  cursor: pointer;
+}
+
+.menuButton {
+  padding-right: 20px;
 }
