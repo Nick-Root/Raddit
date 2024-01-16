@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteCommunityThunk } from "../../redux/community"
-
+import './DeleteCommunity.css'
 
 const DeleteCommunityModal = () => {
     const { closeModal } = useModal()
@@ -29,8 +29,8 @@ const DeleteCommunityModal = () => {
                 All associated comments and posts will subsequently be deleted.
                 You cannot undo this action.
             </div>
-            <button onClick={deleteCommunity}>Delete</button>
-            <button onClick={closeModal}>Cancel</button>
+            <button onClick={deleteCommunity} className='commdel'>Delete</button>
+            <button onClick={closeModal} className="commcancel">Cancel</button>
         </div>
     )
 

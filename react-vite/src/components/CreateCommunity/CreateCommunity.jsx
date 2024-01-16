@@ -45,7 +45,7 @@ function CreateCommunityModal() {
 
     return (
         <div className='communitymodalcont'>
-            <h1>Create a Community</h1>
+            <h1 className="cac">Create a Community</h1>
             <form onSubmit={handleSubmit} className='communityform'>
                 <label>
                     <input
@@ -68,7 +68,7 @@ function CreateCommunityModal() {
                     />
                 </label>
                 {<p className="error">{errors}</p>}
-                <button type='submit' disabled={community.length === 0 && description.length === 0} className='commbutton'>Create Community</button>
+                <button type='submit' disabled={community.length === 0 || description.length === 0} className='commbutton'>Create Community</button>
             </form>
         </div>
     )

@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
 import { useNavigate, useParams } from "react-router-dom"
 import { deletePostThunk, thunkGetAllPosts } from "../../redux/post"
-
+import './DeletePost.css'
 
 const DeletePostModal = () => {
     const { closeModal } = useModal()
@@ -26,8 +26,8 @@ const DeletePostModal = () => {
                 Are you sure you want to delete this post?
                 You cannot undo this action.
             </div>
-            <button onClick={deletePost}>Delete</button>
-            <button onClick={closeModal}>Cancel</button>
+            <button onClick={deletePost} className="postDelete">Delete</button>
+            <button onClick={closeModal} className="postCancel">Cancel</button>
         </div>
     )
 

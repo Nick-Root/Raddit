@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useModal } from "../../context/Modal"
 import { thunkGetSingleCommunity, updateCommunityThunk } from "../../redux/community"
-
+import './UpdateCommunity.css'
 
 
 

@@ -14,6 +14,13 @@ def seed_communities():
     db.session.add(games)
     db.session.add(sports)
     db.session.add(cars)
+    db.session.add(Community(ownerId=4, community='Technology', description='Discuss the latest in tech innovations and gadgets'))
+    db.session.add(Community(ownerId=5, community='Books', description='A space for book lovers to share recommendations and reviews'))
+    db.session.add(Community(ownerId=6, community='Foodies', description='Explore the world of culinary delights and share your favorite recipes'))
+    db.session.add(Community(ownerId=1, community='Travel', description='Share travel experiences, tips, and destination recommendations'))
+    db.session.add(Community(ownerId=2, community='Music', description='Connect with music enthusiasts and discover new tunes'))
+    db.session.add(Community(ownerId=3, community='Fitness', description='Stay active and share fitness tips with fellow enthusiasts'))
+    db.session.add(Community(ownerId=4, community='Art', description='Express your creativity and discuss various forms of art'))
     db.session.commit()
 
 

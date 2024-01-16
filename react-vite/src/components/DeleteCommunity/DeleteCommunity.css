@@ -1,0 +1,29 @@
+.deleteCommunityModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: #1A1A1B;
+    border-radius: 8px;
+    border: 1px solid gray;
+    padding: 10px 10px 10px 10px;
+    width: 400px
+}
+
+.confirmCommunityDel {
+    color: white
+}
+
+#modal-content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+}
+
+.commdel {
+    color: white;
+    background-color: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
