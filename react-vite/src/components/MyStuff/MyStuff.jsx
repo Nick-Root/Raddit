@@ -66,7 +66,7 @@ const MyStuff = () => {
       )}
 
       {activeTab === 'communities' && (
-        <div>
+        <div className='msCommBox'>
           {currUserCommunities.length > 0 ? (
             currUserCommunities.map((community) => (
               <div className="singleCommunity" key={community.id}>

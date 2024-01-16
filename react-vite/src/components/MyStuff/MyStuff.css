@@ -47,3 +47,8 @@
     width: fit-content;
     margin-bottom: 0px;
 }
+
+.msCommBox {
+    width: fit-content;
+    flex-wrap: wrap;
+}
