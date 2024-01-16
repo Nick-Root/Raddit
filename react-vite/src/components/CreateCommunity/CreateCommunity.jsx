@@ -22,12 +22,8 @@ function CreateCommunityModal() {
         e.preventDefault()
 
         console.log("existing communities", existingCommunities)
-        const isDuplicate = existingCommunities.some(existingCommunity => existingCommunity.name.toLowerCase() === community.toLowerCase());
 
-        if (isDuplicate) {
-            setErrors(["Community already exists"]);
-            return;
-        }
+
         const serverResponse = await dispatch(
             createCommunityThunk({
                 community,

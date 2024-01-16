@@ -10,6 +10,8 @@ const DeleteCommunityModal = () => {
     const navigate = useNavigate()
     const { communityId } = useParams()
 
+    console.log("ocmmunityId in modal", communityId)
+
     const deleteCommunity = async (e) => {
         e.preventDefault()
 

@@ -29,6 +29,11 @@ const MyStuff = () => {
     setActiveTab(tab);
   };
 
+  if (!currUserPosts) return null
+  if (!currUserCommunities) return null
+
+  console.log(currUserCommunities[0])
+
   return (
     <div className="mystuffpage">
       <div className="tabs">
@@ -52,20 +57,6 @@ const MyStuff = () => {
                   <h3 className='postBody'>{statePost.body}</h3>
                   {statePost.imageUrl && <img src={statePost.imageUrl} className="awsImg" alt="Post"></img>}
                 </NavLink>
-                {user && user.id === statePost.ownerId && (
-                  <div className='deletePost'>
-                    <div className='postButtons'>
-                      <NavLink to={`/posts/${statePost.id}/update`}>
-                        <button>Update</button>
-                      </NavLink>
-                      <OpenModalMenuItem
-                        itemText={'Delete'}
-                        className='deletePostModal'
-                        modalComponent={<DeletePostModal postId={statePost.id} />}
-                      />
-                    </div>
-                  </div>
-                )}
               </div>
             )).reverse()
           ) : (
@@ -79,22 +70,12 @@ const MyStuff = () => {
           {currUserCommunities.length > 0 ? (
             currUserCommunities.map((community) => (
               <div className="singleCommunity" key={community.id}>
+                {console.log("community", community)}
                 <NavLink to={`/communities/${community.id}`} className='communityLink'>
-                  <h1 className='communityName'>{community.community}</h1>
+                  <h1 className='communityName1'>{community.community}</h1>
                 </NavLink>
                 <p className='communityDesc'>{community.description}</p>
-                {user && user.id === community.ownerId && (
-                  <div className='communityButtons'>
-                      <OpenModalMenuItem
-                        itemText={'Update'}
-                        modalComponent={<UpdateCommunityModal communityId={community.id} />}
-                      />
-                    <OpenModalMenuItem
-                      itemText={'Delete'}
-                      modalComponent={<DeleteCommunityModal communityId={community.id} />}
-                    />
-                  </div>
-                )}
+
               </div>
             ))
           ) : (

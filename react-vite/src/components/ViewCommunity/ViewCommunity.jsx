@@ -34,27 +34,30 @@ const ViewCommunity = () => {
         <div className="communitypage">
             <div className="postCont">
 
-                <h1 className='communityName'>{community[0].community}</h1>
+                <h1 className='communityName1'>{community[0].community}</h1>
                 <h2 className="communityDesc">{community[0].description}</h2>
-                <div className='deleteCommunity'>
-                    {user && ownercheck && (
-                        <>
-                            <OpenModalMenuItem
-                                itemText={'Delete'}
-                                modalComponent={<DeleteCommunityModal />}
-                            />
-                        </>
-                    )}
-                </div>
-                <div className="updateCommunity">
-                    {user && ownercheck && (
-                        <>
-                            <OpenModalMenuItem
-                                itemText={'Update'}
-                                modalComponent={<UpdateCommunityModal />}
-                            />
-                        </>
-                    )}
+                <div className='communityButtons'>
+
+                    <div className='deleteCommunity'>
+                        {user && ownercheck && (
+                            <>
+                                <OpenModalMenuItem
+                                    itemText={'Delete'}
+                                    modalComponent={<DeleteCommunityModal />}
+                                />
+                            </>
+                        )}
+                    </div>
+                    <div className="updateCommunity">
+                        {user && ownercheck && (
+                            <>
+                                <OpenModalMenuItem
+                                    itemText={'Update'}
+                                    modalComponent={<UpdateCommunityModal />}
+                                />
+                            </>
+                        )}
+                    </div>
                 </div>
                 {statePosts.map((statePost) => {
                     return (
