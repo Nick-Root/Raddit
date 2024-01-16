@@ -1,16 +1,16 @@
 # Raddit
 
-#Splash page
+Splash page
 
 ![spasl](https://github.com/Nick-Root/Raddit/assets/135935639/01861406-be36-4e3f-a740-f710354efe3e)
 
-#Home Page
+Home Page
 ![homerad](https://github.com/Nick-Root/Raddit/assets/135935639/38ea53db-87d7-4d8e-bbc3-546ef7d1ef0a)
 
-#MyStuff Page
+MyStuff Page
 ![mystuff](https://github.com/Nick-Root/Raddit/assets/135935639/f511fcf7-553e-468e-bfa4-8bab642a7ed8)
 
-#Create Post Page
+Create Post Page
 ![createpost](https://github.com/Nick-Root/Raddit/assets/135935639/141129ad-04d1-44ee-add0-e008e8be81cb)
 
 ## Getting started
