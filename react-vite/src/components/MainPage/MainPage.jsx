@@ -117,7 +117,7 @@ const MainPage = () => {
                     <div className='communitiesSide'>
                         <h2>Explore Communities</h2>
                         {isLoading ? (
-                            <div className="spinner-container">
+                            <div className="spinner-container-explore">
                                 <div className="spinner"></div>
                             </div>
                         ) : (

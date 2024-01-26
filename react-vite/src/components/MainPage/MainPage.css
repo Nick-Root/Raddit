@@ -200,6 +200,11 @@ button:hover {
 
 }
 
+.maincreatesec {
+    display: flex;
+    flex-direction: column;
+}
+
 .rules {
     display: flex;
     justify-content: center;
@@ -220,9 +225,38 @@ button:hover {
     height: 100vh;
 }
 
+.spinner-container-explore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #3498db;
+    border-left: 4px solid orange;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear;
+}
+
+.aaaaa {
+    display: flex;
+}
+
+.spinnercont {
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid red; */
+    margin-top: 30px;
+}
+
+.spinner1 {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid orange;
     border-radius: 50%;
     width: 40px;
     height: 40px;

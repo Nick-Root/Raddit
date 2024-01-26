@@ -17,10 +17,17 @@ const MyStuff = () => {
   const [activeTab, setActiveTab] = useState('posts');
 
   useEffect(() => {
-    dispatch(thunkGetCurrentUserPosts());
-    dispatch(thunkGetCurrentUserCommunities());
-    setIsLoading(false);
+    const fetchData = async () => {
+      await Promise.all([
+        dispatch(thunkGetCurrentUserPosts()),
+        dispatch(thunkGetCurrentUserCommunities()),
+      ]);
+      setIsLoading(false);
+    };
+
+    fetchData();
   }, [dispatch]);
+
 
   const user = useSelector((state) => state.session.user);
 

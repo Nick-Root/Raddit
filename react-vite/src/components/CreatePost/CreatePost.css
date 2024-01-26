@@ -13,6 +13,9 @@
     width: fit-content
 }
 
+
+
+
 .form {
     display: flex;
     flex-direction: column;
@@ -28,7 +31,8 @@
 }
 
 #community {
-    width: 300px;
+    width: 305px;
+    margin-bottom: 20px;
 }
 
 .imageBox {
@@ -49,4 +53,12 @@
     width: 300px;
     height: 30px;
     margin-bottom: 20px;
+}
+
+.errors1 {
+    color: red;
+    position: fixed;
+    font-size: 12px;
+    padding-bottom: 250px;
+    /* padding-right: 100px; */
 }
