@@ -142,7 +142,7 @@ const postReducer = (state = initialState, action) => {
                 posts: (state.posts || []).filter((post) => post.id !== action.postId),
             };
         default:
-            return state;
+            return state
     }
 };
 
