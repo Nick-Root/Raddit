@@ -62,7 +62,7 @@ def seed_posts():
         title='Showcasing your latest art projects', imageUrl='https://radditbucket.s3.amazonaws.com/art1.jpg',  body='Artists unite! Share your latest art projects, whether its drawings, paintings, or digital creations. Lets celebrate creativity and inspire each other in the Art community.', ownerId=4, communityId=10
     )
     art2post = Post(
-        title='Favorite art supplies and tools', imageUrl='https://radditbucket.s3.amazonaws.com/artsupplies.jpg', body='What are your go-to art supplies and tools? Whether its a specific brand of paints, brushes, or digital tools, share your recommendations with fellow artists in the community!', ownerId=5, communityId=10
+        title='Favorite art supplies and tools', imageUrl='https://radditbucket.s3.amazonaws.com/artstuff.jpg', body='What are your go-to art supplies and tools? Whether its a specific brand of paints, brushes, or digital tools, share your recommendations with fellow artists in the community!', ownerId=5, communityId=10
     )
 
     db.session.add(games1post)

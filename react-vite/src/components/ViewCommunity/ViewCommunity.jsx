@@ -33,30 +33,32 @@ const ViewCommunity = () => {
     return (
         <div className="communitypage">
             <div className="postCont">
+                <div className="commHeade">
+                    <h1 className='communityName1'>{community[0].community}</h1>
+                    <h2 className="communityDesc">{community[0].description}</h2>
 
-                <h1 className='communityName1'>{community[0].community}</h1>
-                <h2 className="communityDesc">{community[0].description}</h2>
-                <div className='communityButtons'>
+                    <div className='communityButtons'>
 
-                    <div className='deleteCommunity'>
-                        {user && ownercheck && (
-                            <>
-                                <OpenModalMenuItem
-                                    itemText={'Delete'}
-                                    modalComponent={<DeleteCommunityModal />}
-                                />
-                            </>
-                        )}
-                    </div>
-                    <div className="updateCommunity">
-                        {user && ownercheck && (
-                            <>
-                                <OpenModalMenuItem
-                                    itemText={'Update'}
-                                    modalComponent={<UpdateCommunityModal />}
-                                />
-                            </>
-                        )}
+                        <div className="updateCommunity">
+                            {user && ownercheck && (
+                                <>
+                                    <OpenModalMenuItem
+                                        itemText={'Update'}
+                                        modalComponent={<UpdateCommunityModal />}
+                                    />
+                                </>
+                            )}
+                        </div>
+                        <div className='deleteCommunity'>
+                            {user && ownercheck && (
+                                <>
+                                    <OpenModalMenuItem
+                                        itemText={'Delete'}
+                                        modalComponent={<DeleteCommunityModal />}
+                                    />
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
                 {statePosts.map((statePost) => {

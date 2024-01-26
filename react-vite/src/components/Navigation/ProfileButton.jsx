@@ -13,7 +13,7 @@ function ProfileButton() {
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
   const toggleMenu = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -65,10 +65,13 @@ function ProfileButton() {
           {user ? (
             <div className='dropdownBox'>
               <ul className='dropdownulButton'><p>Welcome {user.username}!</p></ul>
-              <button onClick={navToMyStuff}>My Stuff</button>
-              <ul className='dropdownulButton'>
-                <button onClick={logout}>Log Out</button>
-              </ul>
+              <div className='dropbutts'>
+
+                <button onClick={navToMyStuff}>My Stuff</button>
+                <ul className='dropdownulButton'>
+                  <button onClick={logout}>Log Out</button>
+                </ul>
+              </div>
             </div>
           ) : (
             <>

@@ -123,7 +123,7 @@ const initialState = {};
 const communityReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL_COMMUNITIES:
-            return { ...state, ...action.communities };
+            return { ...action.communities };
         case LOAD_SINGLE_COMMUNITY:
             return { ...action.community };
         case CREATE_COMMUNITY:

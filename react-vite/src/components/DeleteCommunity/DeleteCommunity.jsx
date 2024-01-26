@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
 import { useNavigate, useParams } from "react-router-dom"
-import { deleteCommunityThunk } from "../../redux/community"
+import { deleteCommunityThunk, thunkGetAllCommunities } from "../../redux/community"
 import './DeleteCommunity.css'
 
 const DeleteCommunityModal = () => {
@@ -16,8 +16,8 @@ const DeleteCommunityModal = () => {
         e.preventDefault()
 
         await dispatch(deleteCommunityThunk(communityId))
-
         navigate('/home')
+        await dispatch(thunkGetAllCommunities())
 
         closeModal()
 

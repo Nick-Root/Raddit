@@ -12,7 +12,9 @@
   padding: 0px;
   height: 125px;
   padding: 15px 15px 15px 15px;
+  z-index: 1;
 }
+
 .dropdownBox {
   display: flex;
   justify-content: center;
@@ -21,9 +23,17 @@
   flex-direction: column;
 }
 
-.dropdownul {
-  padding: 0px
+.dropbutts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px
 }
+
+.dropdownul {
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
 .dropdownulButton {
   padding: 0px;
 }
@@ -60,6 +70,7 @@
   color: #FF8800;
   padding-left: 20px;
 }
+
 .homelink-disabled {
   font-size: 40px;
   color: orange;

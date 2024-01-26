@@ -107,14 +107,14 @@ export const deletePostThunk = (postId) => async (dispatch) => {
 };
 
 export const thunkGetCurrentUserPosts = () => async (dispatch) => {
-        const res = await fetch("/api/posts/current");
-        if (res.ok) {
-            const currentUserPosts = await res.json();
-            dispatch(loadCurrentUserPosts(currentUserPosts.posts));
-            return currentUserPosts;
-        } else {
-            console.error('/api/posts/current error output', await res.text());
-        }
+    const res = await fetch("/api/posts/current");
+    if (res.ok) {
+        const currentUserPosts = await res.json();
+        dispatch(loadCurrentUserPosts(currentUserPosts.posts));
+        return currentUserPosts;
+    } else {
+        console.error('/api/posts/current error output', await res.text());
+    }
 };
 
 const initialState = {};
@@ -122,7 +122,7 @@ const initialState = {};
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL_POSTS:
-            return { ...state, ...action.posts };
+            return { ...action.posts };
         case LOAD_SINGLE_POST:
             return { ...action.post };
         case CREATE_POST:

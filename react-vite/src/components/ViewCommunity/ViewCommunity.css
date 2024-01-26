@@ -10,3 +10,14 @@
 .postBody1 {
     margin: 10px 10px 10px 10px
 }
+
+.commHeade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid gray;
+    width: 800px;
+    border-radius: 8px;
+    background-color: #1A1A1B;
+    margin-bottom: 20px;
+}
