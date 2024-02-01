@@ -2,13 +2,17 @@ const LOAD_USER_COMMENTS = '/comments/loadUserComments'
 const POST_COMMENT = '/comments/postComment'
 const DELETE_COMMENT = 'comments/deleteComment'
 const UPDATE_COMMENT = '/comments/editComment'
+const LOAD_POST_COMMENTS = '/comments/loadPostComments';
 
-const loadUserComments = (userComments) => {
-    return {
-        type: LOAD_USER_COMMENTS,
-        userComments
-    }
-}
+const loadPostComments = (postComments) => ({
+    type: LOAD_POST_COMMENTS,
+    postComments,
+});
+
+const loadUserComments = (userComments) => ({
+    type: LOAD_USER_COMMENTS,
+    userComments
+})
 
 const postComment = (comment) => ({
     type: POST_COMMENT,
@@ -75,14 +79,14 @@ export const getCurrentComments = () => async (dispatch) => {
     }
 }
 
-export const thunkPostComment = (questionId, commentData) => async (dispatch) => {
+export const thunkPostComment = (questionId, commentInfo) => async (dispatch) => {
     try {
-        const res = await fetch(`/api/questions/${questionId}/comments`, {
+        const res = await fetch(`/api/posts/${questionId}/comments`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(commentData),
+            body: JSON.stringify(commentInfo),
         });
 
         if (res.ok) {
@@ -96,6 +100,24 @@ export const thunkPostComment = (questionId, commentData) => async (dispatch) =>
         console.error('Error posting comment:', error);
     }
 };
+// Inside thunkLoadPostComments
+export const thunkLoadPostComments = (postId) => async (dispatch) => {
+    try {
+        const res = await fetch(`/api/comments/${postId}`);
+        console.log("TTTTTTTTTTTTT")
+        if (res.ok) {
+            const postComments = await res.json();
+            console.log('Post Comments from API:', postComments);
+            dispatch(loadPostComments(postComments));
+            return postComments;
+        } else {
+            console.error('Error loading post comments:', res.status);
+        }
+    } catch (error) {
+        console.error('Error loading post comments:', error);
+    }
+};
+
 
 const initialState = {
 
@@ -119,16 +141,19 @@ const commentsReducer = (state = initialState, action) => {
         }
         case POST_COMMENT:
             return {
-                ...state,
-                comments: [...state.comments, action.comment],
+                comments: [action.comment],
             };
         case DELETE_COMMENT: {
             const updatedComments = state.userComments.filter(
                 (comment) => comment.id !== action.commentId
             );
             return {
-                ...state,
                 userComments: updatedComments,
+            };
+        }
+        case LOAD_POST_COMMENTS: {
+            return {
+                ...action.postComments
             };
         }
         case UPDATE_COMMENT: {

@@ -52,3 +52,17 @@ def update_comment(commentId):
     else:
         errors = form.errors
         return jsonify({"error": errors}), 400
+
+
+@comment_routes.route('/<int:postId>')
+def get_post_comments(postId):
+    comments = Comment.query.filter_by(postId=postId).order_by(Comment.createdAt.desc()).all()
+    comment_list = []
+
+    for comment in comments:
+        user = User.query.get(comment.ownerId)
+        newComm = comment.to_dict()
+        newComm["owner"] = user.username
+        comment_list.append(newComm)
+    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", comment_list)
+    return jsonify(comment_list)

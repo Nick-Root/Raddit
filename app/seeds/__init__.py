@@ -22,6 +22,7 @@ def seed():
         db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.communities RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
         # undo_users()
         # undo_communities()
         # undo_posts()
@@ -31,6 +32,7 @@ def seed():
     seed_users()
     seed_communities()
     seed_posts()
+    seed_comments()
     # seed_upvotes()
     # seed_comments()
     # Add other seed functions here
@@ -39,9 +41,10 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    undo_users()
+    undo_comments()
     undo_communities()
     undo_posts()
+    undo_users()
     # undo_upvotes()
     # undo_comments()
     # Add other undo functions here

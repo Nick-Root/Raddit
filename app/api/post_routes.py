@@ -35,20 +35,14 @@ def get_post(id):
     post = Post.query.get(id)
     poster = User.query.get(post.ownerId).username
     community = Community.query.get(post.communityId)
-    # comments = Comment.query.filter_by(postId=id).all()
+    comments = Comment.query.filter_by(postId=id).all()
 
-    # comment_data = [{
-    #     "comment": comment.comment,
-    #     "createdAt": comment.createdAt,
-    #     "commentId": comment.id,
-    #     "username": User.query.get(comment.ownerId).username,
-    #     "ownerId": comment.userId
-    # } for comment in comments]
 
     post_data = post.to_dict()
 
     post_data["poster"] = poster
     post_data["community"] = community.community
+
 
     return jsonify(post_data)
 
@@ -168,4 +162,4 @@ def new_comment(id):
         )
         db.session.add(comment)
         db.session.commit()
-    return
+    return jsonify(comment.to_dict())

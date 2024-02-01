@@ -10,6 +10,14 @@
     justify-content: center;
 }
 
+.comments {
+    background-color: white;
+}
+
+.commText {
+    color: black;
+}
+
 .communityInfo {
     display: flex;
     flex-direction: column;

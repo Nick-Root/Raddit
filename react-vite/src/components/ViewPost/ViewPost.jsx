@@ -1,31 +1,48 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { thunkGetSinglePost } from "../../redux/post";
 import { NavLink, useParams } from "react-router-dom";
 import { thunkGetSingleCommunity } from "../../redux/community";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeletePostModal from "../DeletePost/DeletePost";
 import './ViewPost.css';
+import { thunkLoadPostComments, thunkPostComment } from "../../redux/comment";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import DeleteComment from "../DeleteComment/DeleteComment";
 
 const ViewPost = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true);
-
+    const [comment, setComment] = useState("")
     const postInfo = useSelector((state) => state.post);
     const user = useSelector((state) => state.session.user);
     const community = useSelector((state) => state.community);
+    const comments = useSelector((state) => Object.values(state.comment))
     const communityId = postInfo.communityId;
+
+
 
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(thunkGetSinglePost(id));
             await dispatch(thunkGetSingleCommunity(communityId));
+            await dispatch(thunkLoadPostComments(id))
             setIsLoading(false);
         };
 
         fetchData();
     }, [dispatch, id, communityId]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const commentInfo = {
+            comment: comment
+        }
+        await dispatch(thunkPostComment(id, commentInfo))
+        await dispatch(thunkLoadPostComments(id))
+        setComment("")
+    }
 
     if (isLoading || !postInfo || !postInfo.communityId || !user.id || !community) {
         return (
@@ -39,6 +56,7 @@ const ViewPost = () => {
     if (user.id === postInfo.ownerId) {
         usercheck = true;
     }
+    console.log("COMMENTS", comments)
 
     return (
         <div className='postpage'>
@@ -67,6 +85,35 @@ const ViewPost = () => {
                             </div>
                         )}
                     </div>
+                </div>
+                <div className="comments">
+                    <div className='postcommbutton'>
+                        <form onSubmit={handleSubmit} className="commform">
+                            <input
+                                type='text'
+                                name='comment'
+                                placeholder="Leave a comment..."
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
+                                maxLength={255}
+                                className="comminput"
+                            />
+                            <button type='submit' disabled={comment.length === 0}>
+                                Post Comment
+                            </button>
+                        </form>
+                    </div>
+                    {comments.map((comment) => {
+                        return (
+                            <div className="comment" key={comment.id}>
+                                <div className="commheader">{comment.owner} {comment.createdAt} </div>
+                                <p className="commText">{comment.comment}</p>
+                                {user && user.id === comment.ownerId && <OpenModalButton
+                                    buttonText={"Delete"} modalComponent={<DeleteComment comment={comment} />}
+                                />}
+                            </div>
+                        )
+                    }).reverse()}
                 </div>
             </div>
             <div className="communityInfo">
