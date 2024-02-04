@@ -9,6 +9,7 @@ import './ViewPost.css';
 import { thunkLoadPostComments, thunkPostComment } from "../../redux/comment";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import DeleteComment from "../DeleteComment/DeleteComment";
+import UpdateCommentModal from "../UpdateComment/UpdateCommentModal";
 
 const ViewPost = () => {
     const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const ViewPost = () => {
                                     itemText={'Delete'}
                                     className='deletePostModal'
                                     modalComponent={<DeletePostModal />}
-                                />
+                                    />
                             </div>
                         )}
                     </div>
@@ -92,30 +93,44 @@ const ViewPost = () => {
                             <input
                                 type='text'
                                 name='comment'
-                                placeholder="Leave a comment..."
+                                placeholder="Share your thoughts..."
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                                 maxLength={255}
                                 className="comminput"
                             />
-                            <button type='submit' disabled={comment.length === 0}>
+                            <button type='submit' disabled={comment.length === 0} className="submitcomm">
                                 Post Comment
                             </button>
                         </form>
                     </div>
+                    <div className='commentcont'>
                     {comments.map((comment) => {
                         return (
                             <div className="comment" key={comment.id}>
-                                <div className="commheader">{comment.owner} {comment.createdAt} </div>
-                                <p className="commText">{comment.comment}</p>
+                                <div className="commheader">
+                                  <p>{comment.owner}</p>  
+                                  <p>{comment.createdAt}</p> 
+                                  </div>
+                                <div className="bottomcomm"> 
+                                <p className="commentText">{comment.comment}</p>
+                                <div className='commentbuttons'>
+                                {user && user.id === comment.ownerId && <OpenModalButton 
+                                buttonText={<><i className="fa-solid fa-pen-to-square"></i>Update</>}
+                                modalComponent={<UpdateCommentModal comment={comment} />}
+                                className='updatecomment' />}
                                 {user && user.id === comment.ownerId && <OpenModalButton
-                                    buttonText={"Delete"} modalComponent={<DeleteComment comment={comment} />}
-                                />}
+                                    buttonText={<><i className="fa-solid fa-trash-can"></i> Delete</>} modalComponent={<DeleteComment comment={comment} />}
+                                    className='deletecomment'
+                                    />}
+                                    </div>
+                                </div>
                             </div>
                         )
                     }).reverse()}
+                    </div>
                 </div>
-            </div>
+                            </div>
             <div className="communityInfo">
                 <h2>c/{postInfo.community}</h2>
                 <p className='side2'>{community[0] && community[0].description}</p>

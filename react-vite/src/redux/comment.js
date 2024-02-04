@@ -3,6 +3,12 @@ const POST_COMMENT = '/comments/postComment'
 const DELETE_COMMENT = 'comments/deleteComment'
 const UPDATE_COMMENT = '/comments/editComment'
 const LOAD_POST_COMMENTS = '/comments/loadPostComments';
+const CLEAR_COMMENTS_STATE = 'comments/clearCommentsState';
+
+const clearCommentsState = () => ({
+    type: CLEAR_COMMENTS_STATE,
+});
+
 
 const loadPostComments = (postComments) => ({
     type: LOAD_POST_COMMENTS,
@@ -29,14 +35,14 @@ const updateComment = (comment) => ({
     comment
 })
 
-export const thunkUpdateComment = (commentId, newCommentText) => async (dispatch) => {
+export const thunkUpdateComment = (commentId, commText) => async (dispatch) => {
     try {
         const res = await fetch(`/api/comments/${commentId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ comment: newCommentText }),
+            body: JSON.stringify({ comment: commText }),
         });
 
         if (res.ok) {
@@ -78,6 +84,10 @@ export const getCurrentComments = () => async (dispatch) => {
         return comments
     }
 }
+
+export const thunkClearCommentsState = () => (dispatch) => {
+    dispatch(clearCommentsState());
+};
 
 export const thunkPostComment = (questionId, commentInfo) => async (dispatch) => {
     try {
@@ -129,7 +139,7 @@ const commentsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case LOAD_USER_COMMENTS: {
-            const newState = { ...state };
+            const newState = { };
             newState.user = action.userComments.user;
             newState.userComments = action.userComments.comments.map((comment) => ({
                 comment: comment.comment,
@@ -141,21 +151,24 @@ const commentsReducer = (state = initialState, action) => {
         }
         case POST_COMMENT:
             return {
-                comments: [action.comment],
+                ...state,
+                // comment: [action.comment],
             };
         case DELETE_COMMENT: {
-            const updatedComments = state.userComments.filter(
+            const updatedComments = Object.values(state).filter(
                 (comment) => comment.id !== action.commentId
             );
             return {
-                userComments: updatedComments,
+                ...updatedComments,
             };
         }
         case LOAD_POST_COMMENTS: {
             return {
+                ...state,
                 ...action.postComments
             };
         }
+        
         case UPDATE_COMMENT: {
             const updatedComment = {
                 comment: action.comment.comment,
@@ -165,8 +178,11 @@ const commentsReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                comment: updatedComment,
+                
             };
+        }
+        case CLEAR_COMMENTS_STATE: {
+            return initialState;
         }
         default:
             return state;

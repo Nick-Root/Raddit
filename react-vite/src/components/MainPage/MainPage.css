@@ -97,7 +97,7 @@
 
 .awsImg {
     width: 800px;
-    height: 600px;
+    height: auto;
     border-radius: 6px;
 }
 

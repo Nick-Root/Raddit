@@ -56,7 +56,7 @@ def update_comment(commentId):
 
 @comment_routes.route('/<int:postId>')
 def get_post_comments(postId):
-    comments = Comment.query.filter_by(postId=postId).order_by(Comment.createdAt.desc()).all()
+    comments = Comment.query.filter_by(postId=postId).order_by(Comment.createdAt).all()
     comment_list = []
 
     for comment in comments:

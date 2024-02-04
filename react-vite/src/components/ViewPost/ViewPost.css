@@ -12,10 +12,42 @@
 
 .comments {
     background-color: white;
+    border-radius: 6px;
+    border: 1px solid gray;
+    height: fit-content;
+    
 }
 
-.commText {
-    color: black;
+.commentText {
+    background-color: #1A1A1B;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+
+.bottomcomm {
+    display: flex;
+    /* border-top: 1px solid gray; */
+    border-bottom: 1px solid gray;
+    /* margin-top: 20px; */
+    padding-bottom: 20px;
+    background-color: #1A1A1B;
+}
+
+.comment {
+    background-color: #1A1A1B;
+}
+
+.commheader {
+    color: white;
+    background-color: #1A1A1B;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.commform {
+    background-color: #1A1A1B;
 }
 
 .communityInfo {
@@ -36,4 +68,68 @@
 .visitComm:hover {
     color: white;
     text-decoration: underline;
+}
+
+.commentcont {
+    width: 800px;
+    background-color: #1A1A1B;
+}
+
+.comminput {
+    width: 635px;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 6px;
+    margin-top: 10px
+}
+
+.submitcomm {
+    background-color: #FF8800;
+    width: fit-content;
+    height: fit-content;
+    padding: 6px
+}
+
+.submitcomm:hover {
+    background-color: #E67300;
+    color: black;
+}
+
+.modalbuttonupdatecomment {
+    width: fit-content ;
+    background-color: #FF8800;
+    height: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.modalbuttonupdatecomment:hover {
+    background-color:#E67300;
+}
+.modalbuttondeletecomment:hover {
+    background-color: #B30D09;
+}
+
+.modalbuttondeletecomment {
+    width: fit-content ;
+    background-color: red;
+    height: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.bottomcomm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.commentText {
+    width: 600px
+}
+
+.commentbuttons {
+    display: flex;
+    gap: 10px
 }

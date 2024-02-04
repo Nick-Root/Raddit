@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import './MainPage.css';
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import CreateCommunityModal from "../CreateCommunity/CreateCommunity";
+import { thunkClearCommentsState } from "../../redux/comment";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const MainPage = () => {
         const fetchData = async () => {
             await dispatch(thunkGetAllPosts());
             await dispatch(thunkGetAllCommunities());
+            await dispatch(thunkClearCommentsState())
             setIsLoading(false);
         };
 
