@@ -56,7 +56,7 @@ const MainPage = () => {
     const communities = useSelector((state) => Object.values(state.community));
 
     return (
-        <>
+        <div className='home'>
             <div className="mainpage">
                 {isLoading ? (
                     <div className="spinner-container">
@@ -139,7 +139,7 @@ const MainPage = () => {
                 </div>
             </div>
 
-        </>
+        </div>
     );
 };
 

@@ -6,6 +6,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteCommunityModal from "../DeleteCommunity/DeleteCommunity";
 import UpdateCommunityModal from "../UpdateCommunity/UpdateCommunity";
 import './ViewCommunity.css';
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 const ViewCommunity = () => {
     const dispatch = useDispatch();
@@ -54,8 +55,9 @@ const ViewCommunity = () => {
                         <div className="updateCommunity">
                             {user && ownercheck && (
                                 <>
-                                    <OpenModalMenuItem
-                                        itemText={'Update'}
+                                    <OpenModalButton
+                                        buttonText={<><i className="fa-solid fa-pen-to-square"></i>Update</>}
+                                        className='updatecomment'
                                         modalComponent={<UpdateCommunityModal />}
                                     />
                                 </>
@@ -64,8 +66,9 @@ const ViewCommunity = () => {
                         <div className='deleteCommunity'>
                             {user && ownercheck && (
                                 <>
-                                    <OpenModalMenuItem
-                                        itemText={'Delete'}
+                                    <OpenModalButton
+                                        buttonText={<><i className="fa-solid fa-trash-can"></i> Delete</>}
+                                        className='deletecomment'
                                         modalComponent={<DeleteCommunityModal />}
                                     />
                                 </>

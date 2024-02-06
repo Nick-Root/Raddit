@@ -15,7 +15,7 @@
     border-radius: 6px;
     border: 1px solid gray;
     height: fit-content;
-    
+
 }
 
 .commentText {
@@ -95,23 +95,40 @@
     color: black;
 }
 
+.deletePost {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    height: 40px
+}
+
 .modalbuttonupdatecomment {
-    width: fit-content ;
+    width: fit-content;
     background-color: #FF8800;
     height: fit-content;
     padding: 2px;
     border-radius: 4px;
 }
 
-.modalbuttonupdatecomment:hover {
-    background-color:#E67300;
+button.updatecomment {
+    width: fit-content;
+    background-color: #FF8800;
+    height: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+    margin-right: 10px;
 }
+
+.modalbuttonupdatecomment:hover {
+    background-color: #E67300;
+}
+
 .modalbuttondeletecomment:hover {
     background-color: #B30D09;
 }
 
 .modalbuttondeletecomment {
-    width: fit-content ;
+    width: fit-content;
     background-color: red;
     height: fit-content;
     padding: 2px;
@@ -125,6 +142,7 @@
     margin-right: 20px;
     margin-left: 20px;
 }
+
 .commentText {
     width: 600px
 }

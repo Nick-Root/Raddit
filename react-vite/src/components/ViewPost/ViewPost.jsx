@@ -76,13 +76,13 @@ const ViewPost = () => {
                         {user && usercheck && (
                             <div className='postButtons'>
                                 <NavLink to={`/posts/${postInfo.id}/update`}>
-                                    <button>Update</button>
+                                    <button className="updatecomment"><><i className="fa-solid fa-pen-to-square"></i>Update</></button>
                                 </NavLink>
-                                <OpenModalMenuItem
-                                    itemText={'Delete'}
-                                    className='deletePostModal'
+                                <OpenModalButton
+                                    buttonText={<><i className="fa-solid fa-trash-can"></i> Delete</>}
+                                    className='deletecomment'
                                     modalComponent={<DeletePostModal />}
-                                    />
+                                />
                             </div>
                         )}
                     </div>
@@ -105,32 +105,32 @@ const ViewPost = () => {
                         </form>
                     </div>
                     <div className='commentcont'>
-                    {comments.map((comment) => {
-                        return (
-                            <div className="comment" key={comment.id}>
-                                <div className="commheader">
-                                  <p>{comment.owner}</p>  
-                                  <p>{comment.createdAt}</p> 
-                                  </div>
-                                <div className="bottomcomm"> 
-                                <p className="commentText">{comment.comment}</p>
-                                <div className='commentbuttons'>
-                                {user && user.id === comment.ownerId && <OpenModalButton 
-                                buttonText={<><i className="fa-solid fa-pen-to-square"></i>Update</>}
-                                modalComponent={<UpdateCommentModal comment={comment} />}
-                                className='updatecomment' />}
-                                {user && user.id === comment.ownerId && <OpenModalButton
-                                    buttonText={<><i className="fa-solid fa-trash-can"></i> Delete</>} modalComponent={<DeleteComment comment={comment} />}
-                                    className='deletecomment'
-                                    />}
+                        {comments.map((comment) => {
+                            return (
+                                <div className="comment" key={comment.id}>
+                                    <div className="commheader">
+                                        <p>{comment.owner}</p>
+                                        <p>{comment.createdAt}</p>
+                                    </div>
+                                    <div className="bottomcomm">
+                                        <p className="commentText">{comment.comment}</p>
+                                        <div className='commentbuttons'>
+                                            {user && user.id === comment.ownerId && <OpenModalButton
+                                                buttonText={<><i className="fa-solid fa-pen-to-square"></i>Update</>}
+                                                modalComponent={<UpdateCommentModal comment={comment} />}
+                                                className='updatecomment' />}
+                                            {user && user.id === comment.ownerId && <OpenModalButton
+                                                buttonText={<><i className="fa-solid fa-trash-can"></i> Delete</>} modalComponent={<DeleteComment comment={comment} />}
+                                                className='deletecomment'
+                                            />}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    }).reverse()}
+                            )
+                        }).reverse()}
                     </div>
                 </div>
-                            </div>
+            </div>
             <div className="communityInfo">
                 <h2>c/{postInfo.community}</h2>
                 <p className='side2'>{community[0] && community[0].description}</p>
