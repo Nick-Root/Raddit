@@ -38,10 +38,8 @@ const deletePost = (postId) => ({
 export const thunkGetAllPosts = () => async (dispatch) => {
     try {
         const res = await fetch("/api/posts");
-        // console.log(res)
         if (res.ok) {
             const allPosts = await res.json();
-            console.log("allPosts", allPosts)
             dispatch(loadAllPosts(allPosts));
             return allPosts;
         } else {
@@ -88,7 +86,6 @@ export const createPostThunk = (formData) => async (dispatch) => {
         dispatch(createPost(newPost));
         return newPost;
     } else {
-        console.log(res.status, res)
         throw new Error("Error creating post")
     }
 };

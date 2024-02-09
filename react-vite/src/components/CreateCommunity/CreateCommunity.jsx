@@ -21,8 +21,6 @@ function CreateCommunityModal() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log("existing communities", existingCommunities)
-
 
         const serverResponse = await dispatch(
             createCommunityThunk({

@@ -38,8 +38,6 @@ const MyStuff = () => {
   if (!currUserPosts) return null
   if (!currUserCommunities) return null
 
-  console.log(currUserCommunities[0])
-
   return (
     <div className="mystuffpage">
       <div className="tabs">
@@ -85,7 +83,6 @@ const MyStuff = () => {
           {currUserCommunities.length > 0 ? (
             currUserCommunities.map((community) => (
               <div className="singleCommunity" key={community.id}>
-                {console.log("community", community)}
                 <NavLink to={`/communities/${community.id}`} className='communityLink'>
                   <h1 className='communityName1'>{community.community}</h1>
                 </NavLink>

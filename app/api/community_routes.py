@@ -22,7 +22,6 @@ def get_community(id):
     posts = Post.query.filter_by(communityId = community.id).all()
     data['posts']=[post.to_dict() for post in posts]
     community_data.append(data)
-    print("AAAAAAAAAAAAAAAAAAAAAAA", community_data)
     return community_data
 
 @community_routes.route('/new', methods=['POST'])

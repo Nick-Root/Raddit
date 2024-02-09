@@ -114,10 +114,9 @@ export const thunkPostComment = (questionId, commentInfo) => async (dispatch) =>
 export const thunkLoadPostComments = (postId) => async (dispatch) => {
     try {
         const res = await fetch(`/api/comments/${postId}`);
-        console.log("TTTTTTTTTTTTT")
         if (res.ok) {
             const postComments = await res.json();
-            console.log('Post Comments from API:', postComments);
+
             dispatch(loadPostComments(postComments));
             return postComments;
         } else {
@@ -135,11 +134,10 @@ const initialState = {
 
 
 const commentsReducer = (state = initialState, action) => {
-    console.log("%c   LOOK HERE", "color: purple; font-size: 18px", action)
 
     switch (action.type) {
         case LOAD_USER_COMMENTS: {
-            const newState = { };
+            const newState = {};
             newState.user = action.userComments.user;
             newState.userComments = action.userComments.comments.map((comment) => ({
                 comment: comment.comment,
@@ -168,7 +166,7 @@ const commentsReducer = (state = initialState, action) => {
                 ...action.postComments
             };
         }
-        
+
         case UPDATE_COMMENT: {
             const updatedComment = {
                 comment: action.comment.comment,
@@ -178,7 +176,7 @@ const commentsReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                
+
             };
         }
         case CLEAR_COMMENTS_STATE: {

@@ -64,5 +64,4 @@ def get_post_comments(postId):
         newComm = comment.to_dict()
         newComm["owner"] = user.username
         comment_list.append(newComm)
-    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", comment_list)
     return jsonify(comment_list)

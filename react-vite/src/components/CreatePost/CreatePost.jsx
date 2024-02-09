@@ -83,7 +83,7 @@ const CreatePost = () => {
                             <input
                                 type='text'
                                 name='title'
-                                placeholder='Post Title'
+                                placeholder='Title'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 maxLength={100}
@@ -95,7 +95,7 @@ const CreatePost = () => {
                             <textarea
                                 name='body'
                                 value={body}
-                                placeholder='Post Body'
+                                placeholder='Describe your post...'
                                 onChange={(e) => setBody(e.target.value)}
                                 maxLength={255}
                                 className='bodyInput'
@@ -103,7 +103,7 @@ const CreatePost = () => {
                         </label>
 
                         <label className='imageBox'>
-                            Image Url (optional):
+                            Image (optional):
                             <input type='file' accept='image/*' onChange={(e) => setImageUrl(e.target.files[0])} className='fileup' />
                         </label>
 
@@ -112,12 +112,14 @@ const CreatePost = () => {
                         </button>
                     </form>
                 </div>
-                <div className='postRules'>
-                    <h2 className='rules'>Posting Rules</h2>
-                    <ol>1. Be respectful</ol>
-                    <ol>2. Keep posts related to community</ol>
-                    <ol>3. Look for the original source of your content</ol>
-                    <ol>4. Search for duplicates before posting</ol>
+                <div className='postRulesCont'>
+                    <h1 className='rules'>Posting Rules</h1>
+                    <div className='postRules'>
+                        <ol>1. Be respectful</ol>
+                        <ol>2. Keep posts related to community</ol>
+                        <ol>3. Look for the original source of your content</ol>
+                        <ol>4. Search for duplicates before posting</ol>
+                    </div>
                 </div>
             </div>
             <div className='spinnercont'>

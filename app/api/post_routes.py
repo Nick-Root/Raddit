@@ -13,7 +13,6 @@ post_routes = Blueprint('posts', __name__)
 
 @post_routes.route('/')
 def get_posts():
-    print("route accessed")
     posts_list = Post.query.order_by(Post.id.desc()).all()
 
     posts = []
@@ -89,12 +88,12 @@ def post_post():
             if "url" in result:
                 new_post.imageUrl = result["url"]
 
-        print("new_post", new_post)
+
         db.session.add(new_post)
         db.session.commit()
         return new_post.to_dict()
     else:
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAA", request.form)
+
         return "Bad Data"
 
 @post_routes.route("<int:id>", methods=["PUT"])
@@ -128,7 +127,6 @@ def update_post(id):
         db.session.commit()
         return post.to_dict()
     else:
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAA", request.form)
         return "Bad Data"
 
 

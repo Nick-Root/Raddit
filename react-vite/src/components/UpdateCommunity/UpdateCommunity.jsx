@@ -40,7 +40,6 @@ const UpdateCommunityModal = () => {
         }
         closeModal()
     }
-    console.log("communityById", communityById)
     if (!communityById) return null
 
     return (

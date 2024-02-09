@@ -205,8 +205,8 @@ button:hover {
     background-color: #1A1A1B;
     padding: 10px 15px 10px 0px;
     margin-left: 20px;
-    margin-top: 20px;
-
+    /* margin-top: 20px; */
+    height: fit-content;
 }
 
 .maincreatesec {
@@ -217,6 +217,8 @@ button:hover {
 .rules {
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid white;
+    width: 250px
 }
 
 .createPost {

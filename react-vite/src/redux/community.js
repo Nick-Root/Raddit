@@ -67,8 +67,7 @@ export const thunkGetSingleCommunity = (communityId) => async (dispatch) => {
     if (res.ok) {
         const community = await res.json();
         dispatch(loadSingleCommunity(community));
-        console.log("in thunk")
-        // console.log("community", community)
+
         return community;
     } else {
         console.error(`/api/communities/${communityId} error output`);

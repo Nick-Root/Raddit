@@ -14,7 +14,13 @@
 }
 
 
-
+.postRulesCont {
+    display: flex;
+    flex-direction: column;
+    height: 432px;
+    /* align-content: center; */
+    align-items: center
+}
 
 .form {
     display: flex;

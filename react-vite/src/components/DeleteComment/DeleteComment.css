@@ -1,0 +1,16 @@
+.delcommcont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: #1A1A1B;
+    border-radius: 8px;
+    border: 1px solid gray;
+    padding: 10px 10px 10px 10px;
+    width: 400px
+}
+
+.commconfirm {
+    color: white;
+}

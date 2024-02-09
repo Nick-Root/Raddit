@@ -1,0 +1,30 @@
+.updateCommentModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #1A1A1B;
+    border-radius: 8px;
+    border: 1px solid gray;
+    padding: 10px 10px 10px 10px
+}
+
+.upcommheader {
+    margin-bottom: 5px;
+}
+
+.commentupdate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 10px 10px 10px 10px
+}
+
+.upcomminput {
+    width: 250px;
+    height: 75px;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 10px;
+}

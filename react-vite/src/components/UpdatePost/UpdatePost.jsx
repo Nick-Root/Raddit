@@ -62,64 +62,68 @@ const UpdatePost = () => {
     return (
         <div className='updatepage'>
 
-        <div className='formCont'>
-        <h1 className='createPost'>Update a Post</h1>
-            <form onSubmit={handleSubmit} className='form' encType="multipart/form-data">
+            <div className='formCont'>
+                <h1 className='createPost'>Update a Post</h1>
+                <form onSubmit={handleSubmit} className='form' encType="multipart/form-data">
 
-                <select id="community" name="communityId" onChange={(e) => setCommunityId(e.target.value)} value={communityId}>
-                    <option value="">Select a Community</option>
-                    {Object.values(communities).map((community) => (
-                        <option key={community.id} value={community.id}>
-                            {community.name}
-                        </option>
-                    ))}
-                </select>
-                 {errors && <p className='errors'>{errors}</p>}
-                <label className='titleBox'>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder='Update Title'
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        maxLength={100}
-                        className='titleInput'
-                    />
-                </label>
-
-
-                <label className='bodyBox'>
-                    <textarea
-                        name="body"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                        maxLength={255}
-                        placeholder='Update Body'
-                        className='bodyInput'
+                    <select id="upcommunity" name="communityId" onChange={(e) => setCommunityId(e.target.value)} value={communityId}>
+                        <option value="">Select a Community</option>
+                        {Object.values(communities).map((community) => (
+                            <option key={community.id} value={community.id}>
+                                {community.name}
+                            </option>
+                        ))}
+                    </select>
+                    <p></p>
+                    {errors && <p className='commerror'>{errors}</p>}
+                    <label className='titleBox'>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder='Update Title'
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            maxLength={100}
+                            className='titleInput'
                         />
-                </label>
+                    </label>
 
 
-                <label className='imageBox'>Image Url (optional):
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => setImageUrl(e.target.files[0])}
+                    <label className='bodyBox'>
+                        <textarea
+                            name="body"
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                            maxLength={255}
+                            placeholder='Update Body'
+                            className='bodyInput'
                         />
-                </label>
+                    </label>
 
 
-                <button type="submit" disabled={title && title.length === 0 || body && body.length === 0}>Update Post</button>
-            </form>
-        </div>
-        <div className='postRules'>
-                <h2 className='rules'>Posting Rules</h2>
-                <ol>1. Be respectful</ol>
-                <ol>2. Keep posts related to community</ol>
-                <ol>3. Look for the original source of your content</ol>
-                <ol>4. Search for duplicates before posting</ol>
+                    <label className='imageBox'>Image (optional):
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => setImageUrl(e.target.files[0])}
+                        />
+                    </label>
+
+
+                    <button type="submit" disabled={title && title.length === 0 || body && body.length === 0}>Update Post</button>
+                </form>
             </div>
-    </div>
+            <div className='postRulesCont'>
+
+                <h1 className='rules'>Posting Rules</h1>
+                <div className='postRules'>
+                    <ol>1. Be respectful</ol>
+                    <ol>2. Keep posts related to community</ol>
+                    <ol>3. Look for the original source of your content</ol>
+                    <ol>4. Search for duplicates before posting</ol>
+                </div>
+            </div>
+        </div>
     );
 };
 

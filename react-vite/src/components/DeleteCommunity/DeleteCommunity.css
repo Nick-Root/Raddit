@@ -27,3 +27,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+}

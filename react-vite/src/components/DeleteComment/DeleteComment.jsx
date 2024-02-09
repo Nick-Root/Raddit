@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal"
 import { useParams } from "react-router-dom"
 import { thunkDeleteComment, thunkLoadPostComments } from "../../redux/comment"
 import { thunkGetSinglePost } from "../../redux/post"
+import './DeleteComment.css'
 
 const DeleteComment = ({ comment }) => {
     const { closeModal } = useModal()
@@ -18,11 +19,11 @@ const DeleteComment = ({ comment }) => {
     }
     return (
         <>
-            <div id='delete_comment_container' className="login_container">
+            <div id='delete_comment_container' className="delcommcont">
                 <h2 className='delcomm'>Delete comment?</h2>
                 <div className='commconfirm'>Are you sure you want to delete this comment?</div>
                 <div className='modal-buttons'>
-                    <button onClick={deleteComment}>Delete</button>
+                    <button onClick={deleteComment} className='commdel'>Delete</button>
                     <button onClick={closeModal}>Cancel</button>
                 </div>
             </div>

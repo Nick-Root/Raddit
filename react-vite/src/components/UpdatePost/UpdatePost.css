@@ -3,3 +3,16 @@
     justify-content: center !important;
     align-items: center;
 }
+
+#upcommunity {
+    width: 308px;
+    margin-bottom: 0px
+}
+
+.commerror {
+    color: red;
+    position: absolute;
+    font-size: 12px;
+    /* padding-bottom: 250px; */
+    top: 30px
+}

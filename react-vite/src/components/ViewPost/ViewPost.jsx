@@ -57,7 +57,6 @@ const ViewPost = () => {
     if (user.id === postInfo.ownerId) {
         usercheck = true;
     }
-    console.log("COMMENTS", comments)
 
     return (
         <div className='postpage'>
